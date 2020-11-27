@@ -1,6 +1,6 @@
 #include "chambre.h"
 
-namespace genre {
+namespace gestion {
 	
 	Chambre::Chambre(int id, genre type, int price) : _id(id), _type(type), _price(price) {};
 	
