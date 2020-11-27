@@ -20,8 +20,12 @@ namespace genre {
 		_id = id;
 	};
 
-	void setType(genre type) { _type = type };
+	void setType(genre type) { 
+		_type = type;
+	};
 
-	void setPrice(int price) { _price = price };
+	void setPrice(int price) { 
+		_price = price;
+	};
 
 };
