@@ -15,7 +15,9 @@ namespace gestion {
 		int id() const;
 		genre type() const;
 		int price() const;
-		void setRoom(int id, genre type, int price);
+		void setId(int id);
+		void setType(genre type);
+		void setPrice(int price);
 
 	};
 };
