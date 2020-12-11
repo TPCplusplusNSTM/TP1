@@ -20,7 +20,7 @@ namespace client {
 		_nbreservations += 1;
 	}
 	std::string Client::toStringClient() const {
-		return "Nom = " + _name + " ID = " + std::to_string(_idclient);
+		return "Nom = " + _name + " ID = " + std::to_string(_idclient) + " nb_reservations = " + std::to_string(_nbreservations);
 	}
 	void Client::setName(std::string name) {
 		assert(name != "" && name != " ");
