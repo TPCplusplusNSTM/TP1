@@ -10,11 +10,12 @@ namespace client {
 		std::string getName() const;
 		void editClient(std::string name, int idclient);
 		std::string toStringClient() const;
-
+		void editNbReservations(int reservations);
+		void addReservation();
 	private:
 		std::string _name;
 		int _idclient;
-		int _nbreservation;
+		int _nbreservations;
 	};
 }
 #endif
