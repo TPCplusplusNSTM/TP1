@@ -18,7 +18,7 @@ namespace gestion {
         genre _type;
         int _price;
     };
-};
+}
 
 
 #endif

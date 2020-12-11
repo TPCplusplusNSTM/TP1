@@ -29,16 +29,4 @@ namespace hotel {
 		assert(id != 0);
 		_idhotel = id;
 	}
-	int  Hotel::findChambre(int idchambre) const {
-		auto it = _chambresliste.begin();
-		it = std::find_if(it, _chambresliste.end(),
-			[idchambre](const gestion::Chambre& obj) {
-				return obj.id() == idchambre;
-			});
-		return std::distance(_chambresliste.begin(), it);
-	}
-	void Hotel::eraseChambre(int idchambre) {
-		int dist = findChambre(idchambre);
-		_chambresliste.erase(_chambresliste.begin() + dist);
-	}
 }

@@ -17,8 +17,6 @@ namespace hotel {
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
-		int findChambre(int idchambre) const;
-		void eraseChambre(int idchambre);
 
 	private:
 		std::string _name;
