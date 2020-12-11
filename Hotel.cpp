@@ -37,4 +37,8 @@ namespace hotel {
 			});
 		return std::distance(_chambresliste.begin(), it);
 	}
+	void Hotel::eraseChambre(int idchambre) {
+		int dist = findChambre(idchambre);
+		_chambresliste.erase(_chambresliste.begin() + dist);
+	}
 }

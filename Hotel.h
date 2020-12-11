@@ -7,15 +7,19 @@ namespace hotel {
 	class Hotel {
 	public:
 		Hotel(std::string name, std::string ville, int idhotel, int maxnbchambres);
+
 		std::string getNameHotel() const;
 		int getIdHotel() const;
 		std::string getVilleHotel() const;
 		int getChambresDispo() const;
+
 		void addChambre(gestion::Chambre &chambre);
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
 		int findChambre(int idchambre) const;
+		void eraseChambre(int idchambre);
+
 	private:
 		std::string _name;
 		int _idhotel;

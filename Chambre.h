@@ -1,6 +1,5 @@
 #ifndef CHAMBRE_H
 #define CHAMBREH
-
 enum genre { Single, Double, Suite, Twin };
 
 namespace gestion {
@@ -20,5 +19,6 @@ namespace gestion {
         int _price;
     };
 };
+
 
 #endif
