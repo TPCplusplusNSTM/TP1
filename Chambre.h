@@ -1,5 +1,6 @@
 #ifndef CHAMBRE_H
 #define CHAMBRE_H
+#include <string>
 namespace gestion {
     enum class genre { Single, Double, Suite, Twin };
     class Chambre {
@@ -12,6 +13,7 @@ namespace gestion {
         void setId(int id);
         void setType(genre type);
         void setPrice(int price);
+        std::string toStringChambre() const;
     private:
         int _id;
         genre _type;

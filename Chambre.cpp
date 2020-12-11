@@ -28,4 +28,7 @@ namespace gestion {
         _price = price;
     }
 
+    std::string Chambre::toStringChambre() const {
+        return "ID= " + std::to_string(_id) +" Prix= " + std::to_string(_price);
+    }
 };

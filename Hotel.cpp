@@ -14,6 +14,9 @@ namespace hotel {
 	int Hotel::getChambresDispo() const {
 		return _dispo;
 	}
+	std::string Hotel::toStringHotel() const {
+		return "Nom= " + _name + " Ville= " + _ville + " ID= " + std::to_string(_idhotel) + " Nb_de_chambres= " + std::to_string(_maxnbchambres) + " Nb_dispo= " + std::to_string(_dispo);
+	}
 	void Hotel::addChambre(gestion::Chambre &chambre) {
 		_chambresliste.push_back(chambre);
 	}
