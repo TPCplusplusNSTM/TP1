@@ -1,11 +1,10 @@
 #ifndef CHAMBRE_H
-#define CHAMBREH
-enum genre { Single, Double, Suite, Twin };
-
+#define CHAMBRE_H
 namespace gestion {
-    class Chambre
-    {
+    enum class genre { Single, Double, Suite, Twin };
+    class Chambre {
     public:
+        
         Chambre(int id, genre type, int price);
         int id() const;
         genre type() const;

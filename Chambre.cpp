@@ -1,5 +1,5 @@
 #include "chambre.h"
-
+enum class genre { Single, Double, Suite, Twin };
 namespace gestion {
 
     Chambre::Chambre(int id, genre type, int price) : _id(id), _type(type), _price(price) {}
