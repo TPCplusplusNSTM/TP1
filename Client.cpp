@@ -1,6 +1,6 @@
 #include "Client.h"
 namespace client {
-	Client::Client(std::string name, int idclient) : _name(name), _idclient(idclient) {}
+	Client::Client(std::string name, int idclient) : _name(name), _idclient(idclient), _nbreservation(0) {}
 
 	int Client::getIdClient() const {
 		return _idclient;

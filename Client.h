@@ -14,6 +14,7 @@ namespace client {
 	private:
 		std::string _name;
 		int _idclient;
+		int _nbreservation;
 	};
 }
 #endif
