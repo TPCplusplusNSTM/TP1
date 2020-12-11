@@ -9,12 +9,8 @@ namespace client {
 		return _name;
 	}
 	void Client::editClient(std::string name, int idclient) {
-		if (name != "" && name != " ") {
-			_name = name;
-		}
-		if (idclient != 0) {
-			_idclient = idclient;
-		}
+		setName(name);
+		setIdClient(idclient);
 	}
 	void Client::editNbReservations(int reservations) {
 		_nbreservations = reservations;
@@ -25,6 +21,16 @@ namespace client {
 	std::string Client::toStringClient() const {
 		return "Nom = " + _name + " ID = " + std::to_string(_idclient);
 	}
+	void Client::setName(std::string name) {
+		if (name != "" && name != " ") {
+			_name = name;
+		}
 
+	}
+	void Client::setIdClient(int idclient) {
+		if (idclient != 0) {
+			_idclient = idclient;
+		}
+	}
 
 }

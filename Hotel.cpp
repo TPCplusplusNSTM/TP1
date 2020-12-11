@@ -17,4 +17,13 @@ namespace hotel {
 	void Hotel::addChambre(gestion::Chambre &chambre) {
 		_chambresliste.push_back(chambre);
 	}
+	void Hotel::setNameHotel(std::string name) {
+		_name = name;
+	}
+	void Hotel::setVilleHotel(std::string ville) {
+		_ville = ville;
+	}
+	void Hotel::setIdHotel(int id) {
+		_idhotel = id;
+	}
 }

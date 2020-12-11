@@ -10,6 +10,8 @@ namespace client {
 		std::string getName() const;
 		void editClient(std::string name, int idclient);
 		std::string toStringClient() const;
+		void setName(std::string name);
+		void setIdClient(int idclient);
 		void editNbReservations(int reservations);
 		void addReservation();
 	private:

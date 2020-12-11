@@ -12,6 +12,9 @@ namespace hotel {
 		std::string getVilleHotel() const;
 		int getChambresDispo() const;
 		void addChambre(gestion::Chambre &chambre);
+		void setNameHotel(std::string name);
+		void setVilleHotel(std::string ville);
+		void setIdHotel(int id);
 	private:
 		std::string _name;
 		int _idhotel;
