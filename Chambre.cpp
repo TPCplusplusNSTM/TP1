@@ -1,6 +1,8 @@
 #include "chambre.h"
-enum class genre { Single, Double, Suite, Twin };
-namespace gestion {
+
+enum genre { Single, Double, Suite, Twin };
+
+namespace gestion{
 
     Chambre::Chambre(int id, genre type, int price) : _id(id), _type(type), _price(price) {}
 
@@ -20,15 +22,13 @@ namespace gestion {
         _id = id;
     }
 
-    void Chambre::setType(genre type) {
-        _type = type;
+    void Chambre::setType(genre type) { 
+        _type = type; 
     }
 
-    void Chambre::setPrice(int price) {
-        _price = price;
+    void Chambre::setPrice(int price) { 
+        _price = price; 
     }
 
-    std::string Chambre::toStringChambre() const {
-        return "ID= " + std::to_string(_id) +" Prix= " + std::to_string(_price);
-    }
-};
+  
+}

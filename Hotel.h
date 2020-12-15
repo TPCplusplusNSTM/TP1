@@ -1,6 +1,7 @@
 #ifndef HOTEL_H
 #define HOTEL_H
 #include "Chambre.h"
+#include <iostream>
 #include <string>
 #include <vector>
 namespace hotel {
@@ -25,7 +26,7 @@ namespace hotel {
 		std::string _ville;
 		int _dispo;
 		std::vector<gestion::Chambre> _chambresliste ;
-		int const _maxnbchambres ;
+		int  _maxnbchambres ;
 	};
 
 }

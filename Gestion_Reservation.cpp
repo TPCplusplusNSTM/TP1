@@ -15,6 +15,4 @@ int main() {
 	b.addReservation();
 	std::cout << a.toStringClient() << std::endl;
 	std::cout << b.toStringClient() << std::endl;
-	hotel::Hotel d("Santa_Maria","Madrid",1,52);
-	std::cout << d.toStringHotel() << std::endl;
 }
