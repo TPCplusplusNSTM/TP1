@@ -1,6 +1,7 @@
 #ifndef CLIENT_H
 #define CLIENT_H
 #include <string>
+#include <iostream>
 
 namespace gestion {
 	class Client {
@@ -19,5 +20,6 @@ namespace gestion {
 		int _idclient;
 		int _nbreservations;
 	};
+	std::ostream& operator<<(std::ostream& os, Client client);
 }
 #endif

@@ -6,25 +6,29 @@
 
 
 int main() {
-	gestion::Client a("michel", 1);
-	gestion::Client b("jean", 2);
-	gestion::Client c("denis", 3);
-	std::cout << a.toStringClient() << std::endl;
-	std::cout << b.toStringClient() << std::endl;
-	std::cout << c.toStringClient() << std::endl;
-	a.editClient("michel sardou", 1);
-	b.addReservation();
-	std::cout << a.toStringClient() << std::endl;
-	std::cout << b.toStringClient() << std::endl;
-	gestion::Chambre d(1,Single,0.99);
-	std::cout << d.Chambre_to_string() << std::endl;
-	gestion::Hotel e("Macumba", "Madrid", 1, 12);
-	e.addChambre(d);
-	e.displayHotel();
-	date::Date dd(2020,12,16);
-	date::Date df(2021,1,20);
-	gestion::Reservation f(1,dd,df,1,1,1);
-	f.calc(2.5, 10);
-	std::cout << f.reservation_to_string() << std::endl;
+	gestion::Hotel a("Le grand bleu", "Marseille", 1, 10);
+	gestion::Chambre a1(1,Single,100);
+	gestion::Chambre a2(2,Single,100);
+	gestion::Chambre a3(3,Single,100);
+	gestion::Chambre a4(4,Double,125);
+	gestion::Chambre a5(5,Double,125);
+	gestion::Chambre a6(6,Double,125);
+	gestion::Chambre a7(7,Double,125);
+	gestion::Chambre a8(8,Double,125);
+	gestion::Chambre a9(9,Suite,210);
+	gestion::Chambre a10(10,Suite,210);
+	gestion::Client b1("Michel",1);
+	gestion::Client b2("Jacky",2);
+	gestion::Client b3("Dominique",3);
+	gestion::Client b4("Jean-Louis",4);
+	gestion::Client b5("Bernadette",5);
+	gestion::Client b6("Lucas",6);
+	gestion::Client b7("Nathan",7);
+	gestion::Client b8("Zain",8);
+	gestion::Client b9("Maxime",9);
+	gestion::Client b10("Emma",10);
+	a.addChambre(a1); a.addChambre(a2); a.addChambre(a3); a.addChambre(a4); a.addChambre(a5); a.addChambre(a6); a.addChambre(a7); a.addChambre(a8); a.addChambre(a9); a.addChambre(a10);
+	a.addClient(b1); a.addClient(b2); a.addClient(b3); a.addClient(b4); a.addClient(b5); a.addClient(b6); a.addClient(b7); a.addClient(b8); a.addClient(b9); a.addClient(b10);
+	std::cout << a;
 	return 0;
 }

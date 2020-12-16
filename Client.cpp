@@ -20,7 +20,7 @@ namespace gestion {
 		_nbreservations += 1;
 	}
 	std::string Client::toStringClient() const {
-		return "Nom = " + _name + " ID = " + std::to_string(_idclient) + " nb_reservations = " + std::to_string(_nbreservations);
+		return "Nom = " + _name + ", ID = " + std::to_string(_idclient) + ", nb_reservations = " + std::to_string(_nbreservations);
 	}
 	void Client::setName(std::string name) {
 		assert(name != "" && name != " ");
@@ -31,4 +31,8 @@ namespace gestion {
 		_idclient = idclient;
 	}
 
+	std::ostream& operator<<(std::ostream& os, Client client) {
+		os << client.toStringClient() << std::endl;
+		return os;
+	}
 }
