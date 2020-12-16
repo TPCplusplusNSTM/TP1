@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-namespace hotel {
+namespace gestion {
 	class Hotel {
 	public:
 		Hotel(std::string name, std::string ville, int idhotel, int maxnbchambres);

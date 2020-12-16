@@ -1,6 +1,6 @@
 #include "Hotel.h"
 
-namespace hotel {
+namespace gestion {
 	Hotel::Hotel(std::string name, std::string ville, int idhotel, int maxnbchambres) : _name(name), _idhotel(idhotel), _ville(ville), _dispo(0), _maxnbchambres(maxnbchambres) {}
 	std::string Hotel::getNameHotel() const {
 		return _name;

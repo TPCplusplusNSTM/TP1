@@ -2,7 +2,7 @@
 #define CLIENT_H
 #include <string>
 
-namespace client {
+namespace gestion {
 	class Client {
 	public:
 		Client(std::string name, int idclient);

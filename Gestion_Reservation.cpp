@@ -5,9 +5,9 @@
 
 
 int main() {
-	client::Client a("michel", 1);
-	client::Client b("jean", 2);
-	client::Client c("denis", 3);
+	gestion::Client a("michel", 1);
+	gestion::Client b("jean", 2);
+	gestion::Client c("denis", 3);
 	std::cout << a.toStringClient() << std::endl;
 	std::cout << b.toStringClient() << std::endl;
 	std::cout << c.toStringClient() << std::endl;

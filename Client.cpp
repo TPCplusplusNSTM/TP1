@@ -1,6 +1,6 @@
 #include "Client.h"
 #include <assert.h>
-namespace client {
+namespace gestion {
 	Client::Client(std::string name, int idclient) : _name(name), _idclient(idclient), _nbreservations(0) {}
 
 	int Client::getIdClient() const {
