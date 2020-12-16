@@ -19,7 +19,7 @@ namespace gestion {
         int _idcli;
         double _total;
     public:
-        Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli, double total);
+        Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli);
         int idres() const;
         date::Date dbegin() const;
         date::Date dend() const;
@@ -30,8 +30,9 @@ namespace gestion {
         void setDbegin(date::Date dbegin);
         void setDend(date::Date dend);
         void setIdroom(int idroom);
-        double calc(double price_per_night, double remise);
+        void calc(double price_per_night, double remise);
+        std::string reservation_to_string();
     };
-};
+}
 
 #endif

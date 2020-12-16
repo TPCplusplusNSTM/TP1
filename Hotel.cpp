@@ -23,7 +23,7 @@ namespace gestion {
 		std::cout << "Liste des chambres :" << std::endl;
 		while (it != _chambresliste.end()) {
 			Chambre z = *it;
-			std::cout << z.chambre_To_String() << std::endl;
+			std::cout << z.Chambre_to_string() << std::endl;
 			++it;
 		}
 	}

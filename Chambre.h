@@ -16,13 +16,14 @@ namespace gestion {
         void setType(genre type);
         void setPrice(double price);
         std::string type_to_string(genre type);
-        std::string chambre_To_String();
+        std::string Chambre_to_string();
     private:
         int _id;
         genre _type;
         double _price;
 
     };
-};
+    std::ostream& operator<<(std::ostream& os, Chambre chambre);
+}
 
 #endif

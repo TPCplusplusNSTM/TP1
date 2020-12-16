@@ -4,7 +4,7 @@
 using date::Date;
 
 namespace gestion {
-    Reservation::Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli, double total) : _idres(idres), _dbegin(dbegin), _dend(dend), _idhot(idhot), _idroom(idroom), _idcli(idcli), _total(total) {}
+    Reservation::Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli) : _idres(idres), _dbegin(dbegin), _dend(dend), _idhot(idhot), _idroom(idroom), _idcli(idcli), _total(0) {}
 
     int Reservation::idres() const {
         return _idres;
@@ -46,14 +46,17 @@ namespace gestion {
         _idroom = idroom;
     }
 
-    double Reservation::calc(double price_per_night, double remise) {
+    void Reservation::calc(double price_per_night, double remise) {
         int days = 0;
         date::Date dind = _dbegin;
         while (dind != _dend) {
             dind.nextDay();
             days++;
-        }
-        return price_per_night * days * (1 - remise / 100);
+        };
+        _total = price_per_night * days * (1 - remise / 100);
     }
 
+    std::string Reservation::reservation_to_string() {
+        return "idres = " + std::to_string(_idres) + ", dbegin = " + _dbegin.toString() + ", dend = " + _dend.toString() + ", idhot = " + std::to_string(_idhot) + ", idroom = " + std::to_string(_idroom) + ", idcli = " + std::to_string(_idcli) + ", total = " + std::to_string(_total);
+    }
 }
