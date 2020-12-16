@@ -14,9 +14,20 @@ namespace gestion {
 	int Hotel::getChambresDispo() const {
 		return _dispo;
 	}
-	std::string Hotel::toStringHotel() const {
-		return "Nom= " + _name + " Ville= " + _ville + " ID= " + std::to_string(_idhotel) + " Nb_de_chambres= " + std::to_string(_maxnbchambres) + " Nb_dispo= " + std::to_string(_dispo);
+	void Hotel::displayHotel() const {
+		std::cout << "Nom= " << _name << " Ville= " << _ville << " ID= " << std::to_string(_idhotel) << " Nb_de_chambres= " << std::to_string(_maxnbchambres) << " Nb_dispo= " << std::to_string(_dispo) << std::endl;
+		listChambres();
 	}
+	void Hotel::listChambres() const {
+		auto it = _chambresliste.begin();
+		std::cout << "Liste des chambres :" << std::endl;
+		while (it != _chambresliste.end()) {
+			Chambre z = *it;
+			std::cout << z.chambre_To_String() << std::endl;
+			++it;
+		}
+	}
+
 	void Hotel::addChambre(gestion::Chambre& chambre) {
 		_chambresliste.push_back(chambre);
 	}

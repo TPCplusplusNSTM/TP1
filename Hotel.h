@@ -14,19 +14,20 @@ namespace gestion {
 		std::string getVilleHotel() const;
 		int getChambresDispo() const;
 
-		void addChambre(gestion::Chambre &chambre);
+		void addChambre(gestion::Chambre& chambre);
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
-		std::string toStringHotel() const;
+		void displayHotel() const;
+		void listChambres() const;
 
 	private:
 		std::string _name;
 		int _idhotel;
 		std::string _ville;
 		int _dispo;
-		std::vector<gestion::Chambre> _chambresliste ;
-		int  _maxnbchambres ;
+		std::vector<gestion::Chambre> _chambresliste;
+		int  _maxnbchambres;
 	};
 
 }

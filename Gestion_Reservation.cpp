@@ -15,4 +15,10 @@ int main() {
 	b.addReservation();
 	std::cout << a.toStringClient() << std::endl;
 	std::cout << b.toStringClient() << std::endl;
+	gestion::Chambre d(1,Single,0.99);
+	std::cout << d.chambre_To_String() << std::endl;
+	gestion::Hotel e("Macumba", "Madrid", 1, 12);
+	e.addChambre(d);
+	e.displayHotel();
+	return 0;
 }

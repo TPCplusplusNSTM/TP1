@@ -2,26 +2,48 @@
 
 namespace gestion {
 
-    Chambre::Chambre(int id, genre type, int price) : _id(id), _type(type), _price(price) {};
+    Chambre::Chambre(int id, genre type, double price) : _id(id), _type(type), _price(price) {}
 
     int Chambre::id() const {
         return _id;
-    };
+    }
 
     genre Chambre::type() const {
         return _type;
-    };
+    }
 
-    int Chambre::price() const {
+    double Chambre::price() const {
         return _price;
-    };
+    }
 
     void Chambre::setId(int id) {
         _id = id;
-    };
+    }
 
-    void Chambre::setType(genre type) { _type = type; };
+    void Chambre::setType(genre type) { _type = type; }
 
-    void Chambre::setPrice(int price) { _price = price; };
+    void Chambre::setPrice(double price) { _price = price; }
 
+    std::string Chambre::type_to_string(genre type) {
+        if (type == 0) {
+            return "Single";
+        }
+        else {
+            if (type == 1) {
+                return "Double";
+            }
+            else {
+                if (type == 2) {
+                    return "Suite";
+                }
+                else {
+                    return "Twin";
+                }
+            }
+        }
+    }
+
+    std::string Chambre::chambre_To_String() {
+        return "id = " + std::to_string(_id) + ", type = " + type_to_string(_type) + ", prix = " + std::to_string(_price);
+    }
 };
