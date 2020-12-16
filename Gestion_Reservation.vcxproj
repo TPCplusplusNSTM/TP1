@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Chambre.cpp" />
     <ClCompile Include="Client.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Gestion_Reservation.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="Reservation.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Chambre.h" />
     <ClInclude Include="Client.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Hotel.h" />

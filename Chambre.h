@@ -3,8 +3,9 @@
 
 enum genre { Single, Double, Suite, Twin };
 
-namespace gestion{
-    class Chambre {
+namespace gestion {
+    class Chambre
+    {
     public:
         Chambre(int id, genre type, int price);
         int id() const;
@@ -17,6 +18,7 @@ namespace gestion{
         int _id;
         genre _type;
         int _price;
+
     };
 };
 
