@@ -59,4 +59,34 @@ namespace gestion {
     std::string Reservation::reservation_to_string() {
         return "idres = " + std::to_string(_idres) + ", dbegin = " + _dbegin.toString() + ", dend = " + _dend.toString() + ", idhot = " + std::to_string(_idhot) + ", idroom = " + std::to_string(_idroom) + ", idcli = " + std::to_string(_idcli) + ", total = " + std::to_string(_total);
     }
+
+    genre chooseTypeRoom() {
+        bool test = false;
+        std::string type;
+        genre typec = Single;
+        while (test == false) {
+            std::cout << "Entrez le type de chambre souhaite (Single, Double, Suite, Twin)" << std::endl;
+            std::cin >> type;
+            if (type.compare("Single") == 0) {
+                typec = Single;
+                test = true;
+            }
+            else if (type.compare("Double") == 0) {
+                typec = Double;
+                test = true;
+            }
+            else if (type.compare("Suite") == 0) {
+                typec = Suite;
+                test = true;
+            }
+            else if (type.compare("Twin") == 0) {
+                typec = Twin;
+                test = true;
+            }
+            else {
+                std::cout << "Incorrecte : veuillez taper exactement le contenu entre parentheses" << std::endl;
+            }
+        }
+        return typec;
+    }
 }

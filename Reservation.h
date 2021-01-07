@@ -10,16 +10,9 @@ using date::Date;
 namespace gestion {
     class Reservation
     {
-    private:
-        int _idres;
-        date::Date _dbegin;
-        date::Date _dend;
-        int _idhot;
-        int _idroom;
-        int _idcli;
-        double _total;
     public:
         Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli);
+        Reservation() = default;
         int idres() const;
         date::Date dbegin() const;
         date::Date dend() const;
@@ -32,7 +25,17 @@ namespace gestion {
         void setIdroom(int idroom);
         void calc(double price_per_night, double remise);
         std::string reservation_to_string();
+        
+    private:
+        int _idres;
+        date::Date _dbegin;
+        date::Date _dend;
+        int _idhot;
+        int _idroom;
+        int _idcli;
+        double _total;
     };
+    genre chooseTypeRoom();
 }
 
 #endif
