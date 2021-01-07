@@ -60,33 +60,59 @@ namespace gestion {
         return "idres = " + std::to_string(_idres) + ", dbegin = " + _dbegin.toString() + ", dend = " + _dend.toString() + ", idhot = " + std::to_string(_idhot) + ", idroom = " + std::to_string(_idroom) + ", idcli = " + std::to_string(_idcli) + ", total = " + std::to_string(_total);
     }
 
-    genre chooseTypeRoom() {
-        bool test = false;
-        std::string type;
-        genre typec = Single;
-        while (test == false) {
-            std::cout << "Entrez le type de chambre souhaite (Single, Double, Suite, Twin)" << std::endl;
-            std::cin >> type;
-            if (type.compare("Single") == 0) {
-                typec = Single;
-                test = true;
-            }
-            else if (type.compare("Double") == 0) {
-                typec = Double;
-                test = true;
-            }
-            else if (type.compare("Suite") == 0) {
-                typec = Suite;
-                test = true;
-            }
-            else if (type.compare("Twin") == 0) {
-                typec = Twin;
-                test = true;
+    void Reservation::enterDates()
+    {
+        Date a;
+        Date b;
+        int stockage;
+        bool estConforme = false;
+        while (not estConforme) {
+            std::cout << "Entrer l'année de votre première date de réservation" << std::endl;
+            std::cin >> stockage;
+            a.setYear(stockage);
+            std::cout << "Entrer le mois de votre première date de réservation" << std::endl;
+            std::cin >> stockage;
+            a.setMonth(stockage);
+            std::cout << "Entrer le jour de votre première date de réservation" << std::endl;
+            std::cin >> stockage;
+            a.setDay(stockage);
+            std::cout << "Entrer l'année de votre deuxième date de réservation" << std::endl;
+            std::cin >> stockage;
+            b.setYear(stockage);
+            std::cout << "Entrer le mois de votre deuxième date de réservation" << std::endl;
+            std::cin >> stockage;
+            b.setMonth(stockage);
+            std::cout << "Entrer le jour de votre deuxième date de réservation" << std::endl;
+            std::cin >> stockage;
+            b.setDay(stockage);
+            if (a.checkDate() && b.checkDate() && a <= b) {
+                estConforme = true;
             }
             else {
-                std::cout << "Incorrecte : veuillez taper exactement le contenu entre parentheses" << std::endl;
+                std::cout << "Les dates ne sont pas conformes veuillez rentrer de nouveau les dates" << std::endl;
             }
         }
-        return typec;
+        _dbegin = a;
+        _dend = b;
+        Reservation r;
+        r.setDbegin(a);
+        r.setDend(b);
+        std::cout << "Votre réservation comporte " << r.nbDates() << "nuits" << std::endl;
     }
+
+    int Reservation::nbDates() {
+        if (_dbegin.checkDate() && _dend.checkDate() && _dbegin <= _dend) {
+            int days = 0;
+            date::Date dind = _dbegin;
+            while (dind != _dend) {
+                dind.nextDay();
+                days++;
+            };
+            return days;
+        }
+        else {
+            std::cout << "Les dates ne sont pas conformes" << std::endl;
+        }
+    }
+
 }

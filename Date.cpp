@@ -33,6 +33,35 @@ namespace date {
 		return true;
 	}
 
+	bool Date::checkDate() {
+		if (_year < 0) {
+			return false;
+		}
+		if ((_month < 1) || (_month > 12)) {
+			return false;
+		}
+		if ((_day < 1) || (_day > 31)) {
+			return false;
+		}
+		if ((_month == 1 || _month == 3 || _month == 5 || _month == 7
+			|| _month == 8 || _month == 10 || _month == 12) && (_day > 31)) {
+			return false;
+		}
+		if ((_month == 4 || _month == 6 || _month == 9 || _month == 11)
+			&& (_day > 30)) {
+			return false;
+		}
+		if ((_month == 2) && (_day > 29)) {
+			return false;
+		}
+		if ((_month == 2) && (_day == 29)) {
+			if ((_year % 4) || ((_year % 100 == 0) && (_year % 400))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 
 
 	Date::Date(int year, int month, int day) {

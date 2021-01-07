@@ -25,6 +25,8 @@ namespace gestion {
         void setIdroom(int idroom);
         void calc(double price_per_night, double remise);
         std::string reservation_to_string();
+        void enterDates();
+        int nbDates();
         
     private:
         int _idres;
@@ -35,7 +37,6 @@ namespace gestion {
         int _idcli;
         double _total;
     };
-    genre chooseTypeRoom();
 }
 
 #endif

@@ -23,7 +23,6 @@ namespace gestion {
         int _id;
         genre _type;
         double _price;
-        bool _dispo;
     };
     std::ostream& operator<<(std::ostream& os, Chambre chambre);
 }

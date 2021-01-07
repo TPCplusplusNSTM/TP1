@@ -16,6 +16,7 @@ namespace date {
 		int month() const;
 		int day() const;
 		bool checkDate(int year, int month, int day);
+		bool checkDate();
 		void setYear(int year);
 		void setMonth(int month);
 		void setDay(int day);

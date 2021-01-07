@@ -2,7 +2,7 @@
 
 namespace gestion {
 
-    Chambre::Chambre(int id, genre type, double price) : _id(id), _type(type), _price(price), _dispo(true) {}
+    Chambre::Chambre(int id, genre type, double price) : _id(id), _type(type), _price(price) {}
 
     int Chambre::id() const {
         return _id;
@@ -16,17 +16,12 @@ namespace gestion {
         return _price;
     }
 
-    bool Chambre::dispo() const {
-        return _dispo;
-    }
 
     void Chambre::setId(int id) { _id = id; }
 
     void Chambre::setType(genre type) { _type = type; }
 
     void Chambre::setPrice(double price) { _price = price; }
-
-    void Chambre::setDispo(bool dispo) { _dispo = dispo; }
 
     std::string Chambre::type_to_string(genre type) {
         if (type == 0) {
