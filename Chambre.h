@@ -12,11 +12,9 @@ namespace gestion {
         int id() const;
         genre type() const;
         double price() const;
-        bool dispo() const;
         void setId(int id);
         void setType(genre type);
         void setPrice(double price);
-        void setDispo(bool dispo);
         std::string type_to_string(genre type);
         std::string Chambre_to_string();
     private:

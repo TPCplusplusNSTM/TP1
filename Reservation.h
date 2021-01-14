@@ -1,7 +1,6 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 #include "Date.h"
-#include "Hotel.h"
 #include "Chambre.h"
 #include "Client.h"
 #include <vector>
@@ -42,15 +41,7 @@ namespace gestion {
         int _idcli;
         double _total;
     };
-
-    class ListeReservations {
-    public:
-        ListeReservations();
-
-    private:
-        std::vector<Reservation> _listereservation;
-    };
-
+    std::ostream& operator<<(std::ostream& os, Reservation reservation);
     genre chooseTypeRoom();
 }
 

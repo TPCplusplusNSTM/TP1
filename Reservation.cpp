@@ -1,5 +1,4 @@
 #include "reservation.h"
-#include "Date.h"
 
 using date::Date;
 
@@ -106,7 +105,7 @@ namespace gestion {
         if (_dbegin.checkDate() && _dend.checkDate() && _dbegin <= _dend) {
             int days = 0;
             date::Date dind = _dbegin;
-            while (dind != _dend + 1) {
+            while (dind != _dend) {
                 dind.nextDay();
                 days++;
             };
@@ -117,14 +116,13 @@ namespace gestion {
         }
     }
 
-//ListeReservations -------------------------------------------------------------------------------------------
-
-    ListeReservations::ListeReservations() {}
-
-
-
 
 //free fonction -----------------------------------------------------------------------------------------------
+
+    std::ostream& operator<<(std::ostream& os, Reservation reservation) {
+        os << reservation.reservation_to_string() << std::endl;
+        return os;
+    }
 
     genre chooseTypeRoom() {
         bool test = false;
