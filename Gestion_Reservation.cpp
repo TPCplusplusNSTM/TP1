@@ -1,7 +1,4 @@
-#include "Date.h"
-#include "Client.h"
 #include "Hotel.h"
-#include "Reservation.h"
 #include <iostream>
 #include <vector>
 
@@ -67,7 +64,7 @@ int main() {
 
 
 
-
+// 8.a)
 	genre a = gestion::chooseTypeRoom();
 	if (a == 0) {
 		std::cout << "a = Single" << std::endl;
@@ -85,6 +82,10 @@ int main() {
 			}
 		}
 	}
+	// 8.b)
+	int index = h1.checkTypeDispo(a, d7, d8);
+	h1.displayChambre(index);
+
     return 0;
 }
 

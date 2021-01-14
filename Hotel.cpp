@@ -32,20 +32,33 @@ namespace gestion {
 		_idhotel = id;
 	}
 
-	std::vector<int> Hotel::findIdGenreChambre(genre type) const {
-		std::vector<int> listechambre;
+	int Hotel::checkTypeDispo(genre& type, date::Date& dbegin, date::Date& dend) const{
+		bool test = false;
 		auto it = _chambresliste.begin();
-		while (it != _chambresliste.end()) {
-			it = find_if(it, _chambresliste.end(), [type](const Chambre& obj) {return obj.type() == type; }); 
-			if (it != _chambresliste.end()) {
-				listechambre.push_back(it->id()); // on récupère les ID pour les mettre dans un vecteur
-				++it;
+		while (it != _chambresliste.end() && test==false) { // on test le type de chambre
+			if (type == it->type()) {
+				auto it1 = _reservationsliste.begin();
+				while (it1 != _reservationsliste.end() && test==false) {
+					if ((it->id() == it1->idroom()) && ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend()))) { // test l'ID de la chambre et la période de séjour 
+						test = true;
+						int index = std::distance(_chambresliste.begin(), it);
+						return index;
+					}
+					++it1;
+				}
 			}
-			
+			++it;
 		}
-		return listechambre;
+		if (test == false) {
+			std::cout << "Ce type de chambre n'est pas disponible, saisissez un autre type" << std::endl;
+			return 0; // on renvoie une valeur par défaut pour éviter le vide
+		}
 	}
 
+	void Hotel::displayChambre(int index) const {
+		auto it = _chambresliste.begin() + index;
+		std::cout << *it;
+	}
 
 	void Hotel::displayHotel() const {
 		std::cout << "Details Hotel ----------------------------------------------------------------------" << std::endl;

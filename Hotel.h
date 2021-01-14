@@ -20,12 +20,12 @@ namespace gestion {
 		void addClient(Client client);
 		void addReservation(Reservation reservation);
 
-
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
-		std::vector<int> findIdGenreChambre(genre type) const; // permet de chercher les ID des chambres d'un type particulié
+		int checkTypeDispo(genre& type, date::Date& ddebut, date::Date& dfin) const;
 
+		void displayChambre(int index) const;
 		void displayHotel() const;
 		void listChambres() const;
 		void listClients() const;

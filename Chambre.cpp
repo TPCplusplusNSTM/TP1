@@ -42,12 +42,12 @@ namespace gestion {
         }
     }
 
-    std::string Chambre::Chambre_to_string() {
+    std::string Chambre::chambre_to_string() {
         return "id = " + std::to_string(_id) + ", type = " + type_to_string(_type) + ", prix = " + std::to_string(_price);
     }
 
     std::ostream& operator<<(std::ostream& os, Chambre chambre) {
-        os << chambre.Chambre_to_string() << std::endl;
+        os << chambre.chambre_to_string() << std::endl;
         return os;
     }
 }

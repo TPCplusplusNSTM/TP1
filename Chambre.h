@@ -16,7 +16,7 @@ namespace gestion {
         void setType(genre type);
         void setPrice(double price);
         std::string type_to_string(genre type);
-        std::string Chambre_to_string();
+        std::string chambre_to_string();
     private:
         int _id;
         genre _type;
