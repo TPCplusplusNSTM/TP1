@@ -125,6 +125,7 @@ namespace gestion {
 
 
 //free fonction -----------------------------------------------------------------------------------------------
+
     genre chooseTypeRoom() {
         bool test = false;
         std::string type;
@@ -149,7 +150,7 @@ namespace gestion {
                 test = true;
             }
             else {
-                std::cout << "Incorrecte : veuillez entrer exactement le contenu entre parentheses" << std::endl;
+                std::cout << "Incorrect : veuillez entrer exactement le contenu entre parentheses" << std::endl;
             }
         }
         return typec;

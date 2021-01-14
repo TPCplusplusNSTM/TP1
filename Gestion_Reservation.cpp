@@ -7,7 +7,7 @@
 
 int main() {
 	//Création objet hotel
-	gestion::Hotel a("Le grand bleu", "Marseille", 1, 10);
+	gestion::Hotel h1("Le grand bleu", "Marseille", 1, 10);
 
 	//Création objets Chambre
 	gestion::Chambre c1(1, Single, 100);
@@ -34,13 +34,13 @@ int main() {
 	gestion::Client cl10("Emma", 10);
 
 	//Initialisation du vecteur _listechambres (classe Hotel)
-	a.addChambre(c1); a.addChambre(c2); a.addChambre(c3); a.addChambre(c4); a.addChambre(c5); a.addChambre(c6); a.addChambre(c7); a.addChambre(c8); a.addChambre(c9); a.addChambre(c10);
+	h1.addChambre(c1); h1.addChambre(c2); h1.addChambre(c3); h1.addChambre(c4); h1.addChambre(c5); h1.addChambre(c6); h1.addChambre(c7); h1.addChambre(c8); h1.addChambre(c9); h1.addChambre(c10);
 
 	//Initialisation du vecteur _listeclients (classe Hotel)
-	a.addClient(cl1); a.addClient(cl2); a.addClient(cl3); a.addClient(cl4); a.addClient(cl5); a.addClient(cl6); a.addClient(cl7); a.addClient(cl8); a.addClient(cl9); a.addClient(cl10);
+	h1.addClient(cl1); h1.addClient(cl2); h1.addClient(cl3); h1.addClient(cl4); h1.addClient(cl5); h1.addClient(cl6); h1.addClient(cl7); h1.addClient(cl8); h1.addClient(cl9); h1.addClient(cl10);
 
 	//affichage de l'hôtel
-	std::cout << a;
+	std::cout << h1;
 
 	//Création objets Date
     date::Date d1(2021,5,1);
@@ -61,6 +61,23 @@ int main() {
 	gestion::Reservation r3(3, d5, d6, 1, 3, 3);
 	gestion::Reservation r4(4, d7, d8, 1, 4, 4);
 
+	genre a = gestion::chooseTypeRoom();
+	if (a == 0) {
+		std::cout << "a = Single" << std::endl;
+	}
+	else {
+		if (a == 1) {
+			std::cout << "a = Double" << std::endl;
+		}
+		else {
+			if (a == 2) {
+				std::cout << "a = Suite" << std::endl;
+			}
+			else {
+				std::cout << "a = Twin" << std::endl;
+			}
+		}
+	}
     return 0;
 }
 
