@@ -1,8 +1,10 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 #include "Date.h"
-#include "hotel.h"
-#include "client.h"
+#include "Hotel.h"
+#include "Chambre.h"
+#include "Client.h"
+#include <vector>
 
 
 using date::Date;
@@ -36,6 +38,15 @@ namespace gestion {
         int _idroom;
         int _idcli;
         double _total;
+    };
+
+    class ListeReservations {
+    public:
+        ListeReservations();
+
+        genre chooseTypeRoom();
+    private:
+        std::vector<Reservation> _listereservation;
     };
 }
 

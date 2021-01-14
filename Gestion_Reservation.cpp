@@ -31,37 +31,10 @@ int main() {
 	a.addChambre(a1); a.addChambre(a2); a.addChambre(a3); a.addChambre(a4); a.addChambre(a5); a.addChambre(a6); a.addChambre(a7); a.addChambre(a8); a.addChambre(a9); a.addChambre(a10);
 	a.addClient(b1); a.addClient(b2); a.addClient(b3); a.addClient(b4); a.addClient(b5); a.addClient(b6); a.addClient(b7); a.addClient(b8); a.addClient(b9); a.addClient(b10);
 	std::cout << a;
+    date::Date d1(2021, 5, 1);
+    date::Date d2(2021, 10, 1);
+    gestion::Reservation r1(1, d1, d2, 1, 1, 1);
     return 0;
-}
-
-genre chooseTypeRoom() {
-    bool test = false;
-    std::string type;
-    genre typec = Single;
-    while (test == false) {
-        std::cout << "Entrez le type de chambre souhaite (Single, Double, Suite, Twin)" << std::endl;
-        std::cin >> type;
-        if (type.compare("Single") == 0) {
-            typec = Single;
-            test = true;
-        }
-        else if (type.compare("Double") == 0) {
-            typec = Double;
-            test = true;
-        }
-        else if (type.compare("Suite") == 0) {
-            typec = Suite;
-            test = true;
-        }
-        else if (type.compare("Twin") == 0) {
-            typec = Twin;
-            test = true;
-        }
-        else {
-            std::cout << "Incorrecte : veuillez taper exactement le contenu entre parentheses" << std::endl;
-        }
-    }
-    return typec;
 }
 
 

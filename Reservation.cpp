@@ -62,8 +62,7 @@ namespace gestion {
 
     void Reservation::enterDates()
     {
-        Date a;
-        Date b;
+        Date a; Date b;
         int stockage;
         bool estConforme = false;
         while (not estConforme) {
@@ -114,5 +113,38 @@ namespace gestion {
             std::cout << "Les dates ne sont pas conformes" << std::endl;
         }
     }
+//-------------------------------------------------------------------------------------------------------------
+// ListeReservations
 
+    ListeReservations::ListeReservations() {}
+
+    genre ListeReservations::chooseTypeRoom() {
+        bool test = false;
+        std::string type;
+        genre typec = Single;
+        while (test == false) {     // On compare les chaînes de caractères entrées par l'utilisateur
+            std::cout << "Entrez le type de chambre souhaite (Single, Double, Suite, Twin)" << std::endl;
+            std::cin >> type;
+            if (type.compare("Single") == 0) {
+                typec = Single;
+                test = true;
+            }
+            else if (type.compare("Double") == 0) {
+                typec = Double;
+                test = true;
+            }
+            else if (type.compare("Suite") == 0) {
+                typec = Suite;
+                test = true;
+            }
+            else if (type.compare("Twin") == 0) {
+                typec = Twin;
+                test = true;
+            }
+            else {
+                std::cout << "Incorrecte : veuillez entrer exactement le contenu entre parentheses" << std::endl;
+            }
+        }
+        return typec;
+    }
 }
