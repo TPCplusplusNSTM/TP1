@@ -3,7 +3,10 @@
 
 using date::Date;
 
+
 namespace gestion {
+
+//Reservation -------------------------------------------------------------------------------------------------
     Reservation::Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli) : _idres(idres), _dbegin(dbegin), _dend(dend), _idhot(idhot), _idroom(idroom), _idcli(idcli), _total(0) {}
 
     int Reservation::idres() const {
@@ -113,12 +116,16 @@ namespace gestion {
             std::cout << "Les dates ne sont pas conformes" << std::endl;
         }
     }
-//-------------------------------------------------------------------------------------------------------------
-// ListeReservations
+
+//ListeReservations -------------------------------------------------------------------------------------------
 
     ListeReservations::ListeReservations() {}
 
-    genre ListeReservations::chooseTypeRoom() {
+
+
+
+//free fonction -----------------------------------------------------------------------------------------------
+    genre chooseTypeRoom() {
         bool test = false;
         std::string type;
         genre typec = Single;

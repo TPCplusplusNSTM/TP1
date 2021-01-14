@@ -44,10 +44,11 @@ namespace gestion {
     public:
         ListeReservations();
 
-        genre chooseTypeRoom();
     private:
         std::vector<Reservation> _listereservation;
     };
+
+    genre chooseTypeRoom();
 }
 
 #endif
