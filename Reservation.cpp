@@ -106,7 +106,7 @@ namespace gestion {
         if (_dbegin.checkDate() && _dend.checkDate() && _dbegin <= _dend) {
             int days = 0;
             date::Date dind = _dbegin;
-            while (dind != _dend) {
+            while (dind != _dend + 1) {
                 dind.nextDay();
                 days++;
             };
