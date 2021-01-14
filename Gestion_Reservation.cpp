@@ -39,27 +39,34 @@ int main() {
 	//Initialisation du vecteur _listeclients (classe Hotel)
 	h1.addClient(cl1); h1.addClient(cl2); h1.addClient(cl3); h1.addClient(cl4); h1.addClient(cl5); h1.addClient(cl6); h1.addClient(cl7); h1.addClient(cl8); h1.addClient(cl9); h1.addClient(cl10);
 
-	//affichage de l'hôtel
-	std::cout << h1;
-
 	//Création objets Date
-    date::Date d1(2021,5,1);
-    date::Date d2(2021,10,1);
+	date::Date d1(2021, 5, 1);
+	date::Date d2(2021, 10, 1);
 
-	date::Date d3(2021,4,1);
-	date::Date d4(2022,1,16);
+	date::Date d3(2021, 4, 1);
+	date::Date d4(2022, 1, 16);
 
-	date::Date d5(2021,6,22);
-	date::Date d6(2022,3,6);
+	date::Date d5(2021, 6, 22);
+	date::Date d6(2022, 3, 6);
 
-	date::Date d7(2021,2,10);
-	date::Date d8(2023,12,25);
+	date::Date d7(2021, 2, 10);
+	date::Date d8(2023, 12, 25);
 
 	//Création objets Reservation
-    gestion::Reservation r1(1, d1, d2, 1, 1, 1);
+	gestion::Reservation r1(1, d1, d2, 1, 1, 1);
 	gestion::Reservation r2(2, d3, d4, 1, 2, 2);
 	gestion::Reservation r3(3, d5, d6, 1, 3, 3);
 	gestion::Reservation r4(4, d7, d8, 1, 4, 4);
+
+	//Initialisation du vecteur _listereservations (classe Hotel)
+	h1.addReservation(r1); h1.addReservation(r2); h1.addReservation(r3); h1.addReservation(r4);
+
+	//affichage de l'hôtel
+	std::cout << h1;
+
+
+
+
 
 	genre a = gestion::chooseTypeRoom();
 	if (a == 0) {

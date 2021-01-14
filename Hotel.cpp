@@ -13,11 +13,14 @@ namespace gestion {
 	}
 	
 
-	void Hotel::addChambre(gestion::Chambre& chambre) {
+	void Hotel::addChambre(Chambre chambre) {
 		_chambresliste.push_back(chambre);
 	}
-	void Hotel::addClient(gestion::Client& client) {
+	void Hotel::addClient(Client client) {
 		_clientsliste.push_back(client);
+	}
+	void Hotel::addReservation(Reservation reservation) {
+		_reservationsliste.push_back(reservation);
 	}
 	void Hotel::setNameHotel(std::string name) {
 		_name = name;
@@ -33,9 +36,9 @@ namespace gestion {
 		std::vector<int> listechambre;
 		auto it = _chambresliste.begin();
 		while (it != _chambresliste.end()) {
-			it = find_if(it, _chambresliste.end(), [type](const Chambre& obj) {return obj.type() == type; });
+			it = find_if(it, _chambresliste.end(), [type](const Chambre& obj) {return obj.type() == type; }); 
 			if (it != _chambresliste.end()) {
-				listechambre.push_back(it->id());
+				listechambre.push_back(it->id()); // on récupère les ID pour les mettre dans un vecteur
 				++it;
 			}
 			
@@ -51,6 +54,8 @@ namespace gestion {
 		listChambres();
 		std::cout << " " << std::endl;
 		listClients();
+		std::cout << " " << std::endl;
+		listReservations();
 		std::cout << "------------------------------------------------------------------------------------" << std::endl;
 	}
 	
