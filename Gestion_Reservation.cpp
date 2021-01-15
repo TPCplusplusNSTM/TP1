@@ -23,9 +23,9 @@ int main() {
 	gestion::Client cl2("Jacky", 2);
 	gestion::Client cl3("Dominique", 3);
 	gestion::Client cl4("Jean-Louis", 4);
-	gestion::Client cl5("Bernadette", 5);
+	gestion::Client cl5("Jacky", 5);
 	gestion::Client cl6("Lucas", 6);
-	gestion::Client cl7("Nathan", 7);
+	gestion::Client cl7("Jacky", 7);
 	gestion::Client cl8("Zain", 8);
 	gestion::Client cl9("Maxime", 9);
 	gestion::Client cl10("Emma", 10);
@@ -64,6 +64,9 @@ int main() {
 	//affichage de l'hôtel
 	std::cout << h1;
 
+	//9.c) Affichage d'un client
+	gestion::Client clicli = h1.chooseClient("Jacky");
+	std::cout << clicli << std::endl;
 
 
 
