@@ -15,6 +15,7 @@ namespace gestion {
 		void setIdClient(int idclient);
 		void editNbReservations(int reservations);
 		void addReservation();
+		void enterClient();
 	private:
 		std::string _name;
 		int _idclient;

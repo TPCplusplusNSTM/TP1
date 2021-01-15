@@ -33,29 +33,39 @@ namespace gestion {
 	}
 
 	int Hotel::checkTypeDispo(genre& type, date::Date& dbegin, date::Date& dend) const{
+		int index = 0;
 		bool test = false;
-		auto it = _chambresliste.begin();
+		auto it = _chambresliste.begin(); // on selectionne une chambre dans le vecteur
 		while (it != _chambresliste.end()) { // on test le type de chambre
 			if (type == it->type()) {
-				auto it1 = _reservationsliste.begin();
+				auto it1 = _reservationsliste.begin(); // si le type concorde on regarde si il y a une reservation en cour
 				while (it1 != _reservationsliste.end()) {
-					if (it->id() == it1->idroom()) { // test l'ID de la chambre et la période de séjour 
-						if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) {
-							test = true;
-							int index = std::distance(_chambresliste.begin(), it);
-							return index;
+					if (it->id() == it1->idroom()) { // test l'ID de la chambre et la période de séjour (relation reservation/chambre)
+						switch (index) {
+						case 0:
+							if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) { // on check les dates strictement inf ou sup au dates de reservations en cours
+								index = std::distance(_chambresliste.begin(), it);
+								test = true;
+								std::cout << "date ok" << std::endl;
+							}
+							break;
+						default:
+							if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) {} // on check les dates strictement inf ou sup au dates de reservations en cours
+							else { test = false; }
 						}
-						else { test = false; }
+						std::cout << "id ok" << std::endl;
 					}
 					++it1;
 				}
+				if (test == true) {
+					return index;
+				}
+				std::cout << "type ok" << std::endl;
 			}
 			++it;
 		}
-		if (test == false) {
-			std::cout << "Ce type de chambre n'est pas disponible, saisissez un autre type" << std::endl;
-			return 0; // on renvoie une valeur par défaut pour éviter le vide
-		}
+		std::cout << "Erreur: Chambre indisponible, veuillez inserer un autre type de chambre " << std::endl;
+		return index = 0;
 	}
 
 	void Hotel::displayChambre(int index) const {
@@ -103,6 +113,33 @@ namespace gestion {
 			std::cout << z;
 			++it;
 		}
+	}
+
+	Client Hotel::chooseClient(std::string name) {
+		auto it = _clientsliste.begin();
+		int numeroclient = 1; // Cette variable servira à afficher l'ordre dans lequel les clients sont trouvés puis à conserver le numéro du client voulu
+		int indice = 1; // Cette variable permettra de trouver le client voulu dans la seconde boucle while
+		std::vector<Client> stockage = {};
+		while (it != _clientsliste.end()) {
+			if (it->getName() == name) {
+				stockage.push_back(*it);
+				std::cout << numeroclient << ") " << *it << std::endl;
+				numeroclient++;
+			}
+			++it;
+		}
+		std::cout << "Choisissez le numéro devant le client vous convenant" << std::endl;
+		std::cin >> numeroclient; // On conserve le numéro devant le client voulu
+		auto it1 = stockage.begin();
+		while (it1 != stockage.end()) {
+			if (indice == numeroclient) {
+				return *it1;
+			}
+			++it1;
+			indice++;
+		}
+		std::cout << "Aucun client ne porte ce nom ou le numéro du client choisi est erroné, veuillez recommencer" << std::endl;
+		assert(indice > numeroclient && numeroclient >= 1); // On met une condition qui ne peut être vrai à la sortie de la boucle ce qui permet d'arrêter le programme 
 	}
 
 	void operator<<(std::ostream& os, Hotel hotel) {

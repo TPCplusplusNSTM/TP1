@@ -3,6 +3,7 @@
 #include "Chambre.h"
 #include "Client.h"
 #include "Reservation.h"
+#include <cassert>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -30,6 +31,7 @@ namespace gestion {
 		void listChambres() const;
 		void listClients() const;
 		void listReservations() const;
+		Client chooseClient(std::string name);
 
 	private:
 		std::string _name;

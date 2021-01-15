@@ -49,6 +49,9 @@ int main() {
 	date::Date d7(2021, 2, 10);
 	date::Date d8(2023, 12, 25);
 
+	date::Date d9(2021,2,10);
+	date::Date d10(2021,2,12);
+
 	//Création objets Reservation
 	gestion::Reservation r1(1, d1, d2, 1, 1, 1);
 	gestion::Reservation r2(2, d3, d4, 1, 2, 2);
@@ -83,7 +86,7 @@ int main() {
 		}
 	}
 	// 8.b)
-	int index = h1.checkTypeDispo(a, d7, d8);
+	int index = h1.checkTypeDispo(a, d9, d10);
 	h1.displayChambre(index);
 
     return 0;
