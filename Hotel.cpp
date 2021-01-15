@@ -35,14 +35,17 @@ namespace gestion {
 	int Hotel::checkTypeDispo(genre& type, date::Date& dbegin, date::Date& dend) const{
 		bool test = false;
 		auto it = _chambresliste.begin();
-		while (it != _chambresliste.end() && test==false) { // on test le type de chambre
+		while (it != _chambresliste.end()) { // on test le type de chambre
 			if (type == it->type()) {
 				auto it1 = _reservationsliste.begin();
-				while (it1 != _reservationsliste.end() && test==false) {
-					if ((it->id() == it1->idroom()) && ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend()))) { // test l'ID de la chambre et la période de séjour 
-						test = true;
-						int index = std::distance(_chambresliste.begin(), it);
-						return index;
+				while (it1 != _reservationsliste.end()) {
+					if (it->id() == it1->idroom()) { // test l'ID de la chambre et la période de séjour 
+						if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) {
+							test = true;
+							int index = std::distance(_chambresliste.begin(), it);
+							return index;
+						}
+						else { test = false; }
 					}
 					++it1;
 				}
