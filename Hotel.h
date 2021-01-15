@@ -4,9 +4,6 @@
 #include "Client.h"
 #include "Reservation.h"
 #include <cassert>
-#include <iostream>
-#include <string>
-#include <vector>
 
 namespace gestion {
 	class Hotel {

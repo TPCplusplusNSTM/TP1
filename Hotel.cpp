@@ -33,34 +33,37 @@ namespace gestion {
 	}
 
 	int Hotel::checkTypeDispo(genre& type, date::Date& dbegin, date::Date& dend) const{
-		int index = 0;
-		bool test = false;
+		int index = 0;	
 		auto it = _chambresliste.begin(); // on selectionne une chambre dans le vecteur
 		while (it != _chambresliste.end()) { // on test le type de chambre
 			if (type == it->type()) {
+				bool testdates = false;
 				auto it1 = _reservationsliste.begin(); // si le type concorde on regarde si il y a une reservation en cour
-				while (it1 != _reservationsliste.end()) {
+				bool idpresentdanslareservation = false; // cette variable va servir pour le cas "ID chambre non present dans les reservations"
+				while (it1 != _reservationsliste.end()) {				
 					if (it->id() == it1->idroom()) { // test l'ID de la chambre et la période de séjour (relation reservation/chambre)
-						switch (index) {
+						idpresentdanslareservation = true;
+						switch (index) { // on test la possibilité de plusieurs réservations sur des périodes différents
 						case 0:
 							if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) { // on check les dates strictement inf ou sup au dates de reservations en cours
 								index = std::distance(_chambresliste.begin(), it);
-								test = true;
-								std::cout << "date ok" << std::endl;
+								testdates = true;
 							}
 							break;
 						default:
 							if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) {} // on check les dates strictement inf ou sup au dates de reservations en cours
-							else { test = false; }
+							else { testdates = false; }
 						}
-						std::cout << "id ok" << std::endl;
 					}
 					++it1;
 				}
-				if (test == true) {
+				if (testdates == true) {
 					return index;
 				}
-				std::cout << "type ok" << std::endl;
+				else if (idpresentdanslareservation == false) {
+					index = std::distance(_chambresliste.begin(), it);
+					return index;
+				}
 			}
 			++it;
 		}

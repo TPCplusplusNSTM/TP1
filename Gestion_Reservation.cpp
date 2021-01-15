@@ -1,6 +1,4 @@
 #include "Hotel.h"
-#include <iostream>
-#include <vector>
 
 int main() {
 	//Création objet hotel
@@ -64,10 +62,10 @@ int main() {
 	//affichage de l'hôtel
 	std::cout << h1;
 
-	//9.c) Affichage d'un client
+	/*9.c) Affichage d'un client
 	gestion::Client clicli = h1.chooseClient("Jacky");
 	std::cout << clicli << std::endl;
-
+	*/
 
 
 // 8.a)
