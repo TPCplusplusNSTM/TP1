@@ -121,6 +121,10 @@ namespace gestion {
         _idcli = idcli;
     }
 
+    void Reservation::setIdhot(int idhot) {
+        _idhot = idhot;
+    }
+
 //free fonction -----------------------------------------------------------------------------------------------
 
     std::ostream& operator<<(std::ostream& os, Reservation reservation) {

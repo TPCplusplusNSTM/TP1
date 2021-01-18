@@ -13,6 +13,7 @@ namespace gestion {
 		std::string getNameHotel() const;
 		int getIdHotel() const;
 		std::string getVilleHotel() const;
+		std::vector<Chambre> getListChambre() const;
 
 		void addChambre(Chambre chambre);
 		void addClient(Client client);
@@ -28,10 +29,16 @@ namespace gestion {
 		void listChambres() const;
 		void listClients() const;
 		void listReservations() const;
-		int chooseClient(std::string name);
+		int chooseClient(std::string name) const;
 		void searchAndDisplayReservation(int idresa) const; // affiche une reservation en fonction de son ID
 		void displayClientReservations(int idclient) const;
+		void displayClientReservations(std::string nom) const;
 		int newIdClient();
+		int newIdReservation();
+
+		bool checkDoublonClient(int idclient);
+		bool checkDoublonChambre(int idchambre);
+		bool checkDoublonReservation(int idresa);
 
 	private:
 		std::string _name;

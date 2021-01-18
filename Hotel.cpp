@@ -11,6 +11,9 @@ namespace gestion {
 	std::string Hotel::getVilleHotel() const {
 		return _ville;
 	}
+	std::vector<Chambre> Hotel::getListChambre() const {
+		return _chambresliste;
+	}
 	
 
 	void Hotel::addChambre(Chambre chambre) {
@@ -119,7 +122,7 @@ namespace gestion {
 		}
 	}
 
-	int Hotel::chooseClient(std::string name) {
+	int Hotel::chooseClient(std::string name) const {
 		auto it = _clientsliste.begin();
 		int numeroclient = 1; // Cette variable servira à afficher l'ordre dans lequel les clients sont trouvés puis à conserver le numéro du client voulu
 		int indice = 1; // Cette variable permettra de trouver le client voulu dans la seconde boucle while
@@ -180,6 +183,10 @@ namespace gestion {
 		}
 	}
 
+	void Hotel::displayClientReservations(std::string nom) const { // on surcharge la fonction pour le nom
+		displayClientReservations(chooseClient(nom));
+	}
+
 	int Hotel::newIdClient() {
 		int id = 0;
 		bool estValide = false;
@@ -187,6 +194,21 @@ namespace gestion {
 			auto it = _clientsliste.begin();
 			while (it != _clientsliste.end()) {
 				if (id != it->getIdClient()) {
+					return id;
+				}
+				else { it++; }
+			}
+			id++;
+		}
+	}
+
+	int Hotel::newIdReservation() {
+		int id = 0;
+		bool estValide = false;
+		while (!estValide) {
+			auto it = _reservationsliste.begin();
+			while (it != _reservationsliste.end()) {
+				if (id != it->idres()) {
 					return id;
 				}
 				else { it++; }

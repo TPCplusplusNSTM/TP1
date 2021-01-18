@@ -90,12 +90,19 @@ int main() {
 	int index = h1.checkTypeDispo(a, d9, d10);
 	h1.displayChambre(index);
 
-//10.c)
+		//10.c)
 	gestion::Reservation ri;
 	double prix_nuit;
 	double remise;
+	int id;
+	std::string estDansHotel;
 
+	//On suppose que l'on rajoute les réservations dans l'hôtel h1
+	ri.setIdhot(h1.getIdHotel());
+
+	//On ajoute au fur et à mesure les 5 réservations en introduisant les différents problèmes
 	for (int i = 0; i < 5; i++) {
+
 		// On commence par entrer les dates dans la reservartion
 		ri.enterDates();
 
@@ -104,7 +111,7 @@ int main() {
 		std::cin >> prix_nuit;
 		std::cout << std::endl << "Entrer la remise: ";
 		std::cin >> remise;
-		std::cout << std::endl; 
+		std::cout << std::endl;
 
 		//On calcule le prix du séjour
 		ri.calc(prix_nuit, remise);
@@ -112,16 +119,50 @@ int main() {
 		//On demande le type de chambre
 		genre type = gestion::chooseTypeRoom();
 
-		//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est 
-		int index_chambre_dipso = h1.checkTypeDispo(type, ri.dbegin(), ri.dend());
+		//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
+		int index = h1.checkTypeDispo(type, ri.dbegin(), ri.dend());
+
+		//On ajoute l'identifiant de la chambre à la réservation
+		std::vector<gestion::Chambre> listechambres = h1.getListChambre();
+		ri.setIdroom(listechambres[index].id());
 
 		//On demande le nom client ayant fait la réservation
 		std::string name = gestion::enterClient();
 
-	}*/
+		//On demande si le client est déja dans l'hôtel
+		std::cout << "Le client est-il nouveau dans l'hôtel ? Entrer oui/non :";
+		std::cin >> estDansHotel;
+		std::cout << std::endl;
+
+		//Si il n'est pas dans l'hôtel on l'ajoute, sinon on demande de choisir quel client choisir
+		if (estDansHotel == "non") {
+			id = h1.newIdClient();
+			gestion::Client c(name, id);
+			h1.addClient(c);
+		}
+		else {
+			id = h1.chooseClient(name);
+		}
+
+		//On ajoute l'identifiant du client à la réservation
+		ri.setIdclient(id);
+
+		//On affecte un identifiant de réservation
+		ri.setIdres(h1.newIdReservation());
+
+		//On ajoute la réservation à l'hôtel
+		h1.addReservation(ri);
+
+		//On regarde si la réservation a bien été ajoutée (il suffit de regarder la dernière ligne
+		h1.listReservations();
+	}
+*/
 
 //11.b)
 	//h1.searchAndDisplayReservation(4);
+
+//11.c)
+	//h1.displayClientReservations("Michel");
 
     return 0;
 }

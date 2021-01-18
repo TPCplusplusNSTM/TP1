@@ -32,6 +32,8 @@ namespace gestion {
         void enterDates();
         int nbDates();
         void setIdclient(int idcli);
+
+        void setIdhot(int idhot);
         
     private:
         int _idres;
