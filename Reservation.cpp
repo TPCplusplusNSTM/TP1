@@ -56,6 +56,7 @@ namespace gestion {
             days++;
         };
         _total = price_per_night * days * (1 - remise / 100);
+        std::cout << "Le prix du séjour sera de " << _total << " euros" << std::endl;
     }
 
     std::string Reservation::reservation_to_string() {
