@@ -29,7 +29,9 @@ namespace gestion {
 		void listClients() const;
 		void listReservations() const;
 		int chooseClient(std::string name);
-		void searchAndDisplayReservation(int idresa) const; // affiche une reseervation en fonction de son ID
+		void searchAndDisplayReservation(int idresa) const; // affiche une reservation en fonction de son ID
+		void displayClientReservations(int idclient) const;
+		int newIdClient();
 
 	private:
 		std::string _name;

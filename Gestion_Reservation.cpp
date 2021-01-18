@@ -69,7 +69,7 @@ int main() {
 
 
 // 8.a)
-	genre a = gestion::chooseTypeRoom();
+	/*genre a = gestion::chooseTypeRoom();
 	if (a == 0) {
 		std::cout << "a = Single" << std::endl;
 	}
@@ -118,10 +118,10 @@ int main() {
 		//On demande le nom client ayant fait la réservation
 		std::string name = gestion::enterClient();
 
-	}
+	}*/
 
 //11.b)
-	h1.searchAndDisplayReservation(4);
+	//h1.searchAndDisplayReservation(4);
 
     return 0;
 }

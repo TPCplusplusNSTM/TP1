@@ -31,6 +31,7 @@ namespace gestion {
         std::string reservation_to_string();
         void enterDates();
         int nbDates();
+        void setIdclient(int idcli);
         
     private:
         int _idres;

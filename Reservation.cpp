@@ -117,6 +117,9 @@ namespace gestion {
         }
     }
 
+    void Reservation::setIdclient(int idcli) {
+        _idcli = idcli;
+    }
 
 //free fonction -----------------------------------------------------------------------------------------------
 

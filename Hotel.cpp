@@ -157,6 +157,44 @@ namespace gestion {
 		}
 	}
 
+	void Hotel::displayClientReservations(int idclient) const {
+		std::vector<Reservation> results;
+		auto it = _reservationsliste.begin();
+		while (it != _reservationsliste.end()) {
+			it = find_if(it, _reservationsliste.end(), [idclient](const Reservation& obj) {return obj.idcli() == idclient; });
+			if (it != _reservationsliste.end()) {
+				results.push_back(*it);
+				++it;
+			}
+		}
+		if (results.empty() == false) {
+			std::cout << "liste des réservations du client :" << std::to_string(idclient) << std::endl;
+			auto it = results.begin();
+			while (it != results.end()) {
+				std::cout << *it;
+				++it;
+			}
+		}
+		else {
+			std::cout << "Le client sélectionné n'a pas de réservations" << std::endl;
+		}
+	}
+
+	int Hotel::newIdClient() {
+		int id = 0;
+		bool estValide = false;
+		while (!estValide) {
+			auto it = _clientsliste.begin();
+			while (it != _clientsliste.end()) {
+				if (id != it->getIdClient()) {
+					return id;
+				}
+				else { it++; }
+			}
+			id++;
+		}
+	}
+
 	void operator<<(std::ostream& os, Hotel hotel) {
 		hotel.displayHotel();
 	}
