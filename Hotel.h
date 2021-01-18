@@ -28,7 +28,7 @@ namespace gestion {
 		void listChambres() const;
 		void listClients() const;
 		void listReservations() const;
-		Client chooseClient(std::string name);
+		int chooseClient(std::string name);
 
 	private:
 		std::string _name;

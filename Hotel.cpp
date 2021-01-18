@@ -119,7 +119,7 @@ namespace gestion {
 		}
 	}
 
-	Client Hotel::chooseClient(std::string name) {
+	int Hotel::chooseClient(std::string name) {
 		auto it = _clientsliste.begin();
 		int numeroclient = 1; // Cette variable servira à afficher l'ordre dans lequel les clients sont trouvés puis à conserver le numéro du client voulu
 		int indice = 1; // Cette variable permettra de trouver le client voulu dans la seconde boucle while
@@ -137,7 +137,7 @@ namespace gestion {
 		auto it1 = stockage.begin();
 		while (it1 != stockage.end()) {
 			if (indice == numeroclient) {
-				return *it1;
+				return it1->getIdClient();
 			}
 			++it1;
 			indice++;
