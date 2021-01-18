@@ -33,7 +33,7 @@ namespace gestion {
 		_idhotel = id;
 	}
 
-	int Hotel::checkTypeDispo(genre& type, date::Date& dbegin, date::Date& dend) const{
+	int Hotel::checkTypeDispo(genre type, date::Date dbegin, date::Date dend) const{
 		int index = 0;	
 		auto it = _chambresliste.begin(); // on selectionne une chambre dans le vecteur
 		while (it != _chambresliste.end()) { // on test le type de chambre

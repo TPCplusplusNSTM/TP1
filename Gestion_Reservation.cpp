@@ -113,7 +113,7 @@ int main() {
 		genre type = gestion::chooseTypeRoom();
 
 		//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est 
-
+		int index_chambre_dipso = h1.checkTypeDispo(type, ri.dbegin(), ri.dend());
 
 		//On demande le nom client ayant fait la réservation
 		std::string name = gestion::enterClient();

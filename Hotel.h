@@ -21,7 +21,7 @@ namespace gestion {
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
-		int checkTypeDispo(genre& type, date::Date& ddebut, date::Date& dfin) const;
+		int checkTypeDispo(genre type, date::Date ddebut, date::Date dfin) const;
 
 		void displayChambre(int index) const;
 		void displayHotel() const;
