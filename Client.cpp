@@ -31,11 +31,11 @@ namespace gestion {
 		_idclient = idclient;
 	}
 
-	void Client::enterClient() {
+	std::string enterClient() {
 		std::string name;
 		std::cout << "Entrer le nom du client" << std::endl;
 		std::cin >> name;
-		_name = name;
+		return name;
 	}
 
 	std::ostream& operator<<(std::ostream& os, Client client) {

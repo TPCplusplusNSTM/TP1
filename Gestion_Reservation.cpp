@@ -63,7 +63,7 @@ int main() {
 	std::cout << h1;
 
 	/*9.c) Affichage d'un client
-	gestion::Client clicli = h1.chooseClient("Jacky");
+	int clicli = h1.chooseClient("Jacky");
 	std::cout << clicli << std::endl;
 	*/
 
@@ -89,6 +89,39 @@ int main() {
 	// 8.b)
 	int index = h1.checkTypeDispo(a, d9, d10);
 	h1.displayChambre(index);
+
+//10.c)
+	gestion::Reservation ri;
+	double prix_nuit;
+	double remise;
+
+	for (int i = 0; i < 5; i++) {
+		// On commence par entrer les dates dans la reservartion
+		ri.enterDates();
+
+		//On demande ensuite le prix d'une nuit et la remise sur le séjour
+		std::cout << "Entrer le prix d'une nuit: ";
+		std::cin >> prix_nuit;
+		std::cout << std::endl << "Entrer la remise: ";
+		std::cin >> remise;
+		std::cout << std::endl; 
+
+		//On calcule le prix du séjour
+		ri.calc(prix_nuit, remise);
+
+		//On demande le type de chambre
+		genre type = gestion::chooseTypeRoom();
+
+		//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est 
+
+
+		//On demande le nom client ayant fait la réservation
+		std::string name = gestion::enterClient();
+
+	}
+
+//11.b)
+	h1.searchAndDisplayReservation(4);
 
     return 0;
 }

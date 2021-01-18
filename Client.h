@@ -15,12 +15,12 @@ namespace gestion {
 		void setIdClient(int idclient);
 		void editNbReservations(int reservations);
 		void addReservation();
-		void enterClient();
 	private:
 		std::string _name;
 		int _idclient;
 		int _nbreservations;
 	};
 	std::ostream& operator<<(std::ostream& os, Client client);
+	std::string enterClient();
 }
 #endif

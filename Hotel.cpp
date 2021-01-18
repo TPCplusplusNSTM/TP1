@@ -146,6 +146,17 @@ namespace gestion {
 		assert(indice > numeroclient && numeroclient >= 1); // On met une condition qui ne peut être vrai à la sortie de la boucle ce qui permet d'arrêter le programme 
 	}
 
+	void Hotel::searchAndDisplayReservation(int idresa) const {
+		auto it = _reservationsliste.begin();
+		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.idres() == idresa; });
+		if (it != _reservationsliste.end()) {
+			std::cout << *it;
+		}
+		else {
+			std::cout << "erreur: la reservation n'existe pas";
+		}
+	}
+
 	void operator<<(std::ostream& os, Hotel hotel) {
 		hotel.displayHotel();
 	}
