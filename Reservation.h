@@ -21,19 +21,21 @@ namespace gestion {
         int idhot() const;
         int idroom() const;
         int idcli() const;
+
         double total() const;
 
         void setDbegin(date::Date dbegin);
         void setDend(date::Date dend);
         void setIdroom(int idroom);
+        void setIdclient(int idcli);
+        void setIdhot(int idhot);
+        void setIdres(int idres);
 
         void calc(double price_per_night, double remise);
         std::string reservation_to_string();
         void enterDates();
         int nbDates();
-        void setIdclient(int idcli);
 
-        void setIdhot(int idhot);
         
     private:
         int _idres;

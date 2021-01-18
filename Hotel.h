@@ -22,7 +22,8 @@ namespace gestion {
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
-		int checkTypeDispo(genre type, date::Date ddebut, date::Date dfin) const;
+
+		int checkTypeDispo(genre type, date::Date ddebut, date::Date dfin) const; // permet de retourner l'index d'une chambre disponible, en fonction du genre et de la période.
 
 		void displayChambre(int index) const;
 		void displayHotel() const;
@@ -33,12 +34,16 @@ namespace gestion {
 		void searchAndDisplayReservation(int idresa) const; // affiche une reservation en fonction de son ID
 		void displayClientReservations(int idclient) const;
 		void displayClientReservations(std::string nom) const;
-		int newIdClient();
+
+		int newIdClient(); // créer un identifiant utilisable
 		int newIdReservation();
 
-		bool checkDoublonClient(int idclient);
-		bool checkDoublonChambre(int idchambre);
-		bool checkDoublonReservation(int idresa);
+		bool checkDoublonClient(int idclient) const; // permet de tester si un identifiant est déja utilisé
+		bool checkDoublonClient(Client client) const;
+		bool checkDoublonChambre(int idchambre) const;
+		bool checkDoublonChambre(Chambre chambre) const;
+		bool checkDoublonReservation(int idresa) const;
+		bool checkDoublonReservation(Reservation resa) const;
 
 	private:
 		std::string _name;

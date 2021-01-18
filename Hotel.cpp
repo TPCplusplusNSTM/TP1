@@ -17,12 +17,15 @@ namespace gestion {
 	
 
 	void Hotel::addChambre(Chambre chambre) {
+		assert(checkDoublonChambre(chambre) && "erreur : ID deja defini" );
 		_chambresliste.push_back(chambre);
 	}
 	void Hotel::addClient(Client client) {
+		assert(checkDoublonClient(client) && "erreur : ID deja defini");
 		_clientsliste.push_back(client);
 	}
 	void Hotel::addReservation(Reservation reservation) {
+		assert(checkDoublonReservation(reservation) && "erreur : ID deja defini");
 		_reservationsliste.push_back(reservation);
 		reservation.reservation_to_string();
 	}
@@ -217,7 +220,53 @@ namespace gestion {
 		}
 	}
 
-	void operator<<(std::ostream& os, Hotel hotel) {
+	bool Hotel::checkDoublonClient(int idclient) const {
+		auto it = _clientsliste.begin();
+		it = find_if(it, _clientsliste.end(), [idclient](const Client& obj) {return obj.getIdClient() == idclient; });
+		if (it != _clientsliste.end()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+		
+	}
+
+	bool Hotel::checkDoublonClient(Client client) const {
+		return checkDoublonClient(client.getIdClient());
+	}
+
+	bool Hotel::checkDoublonChambre(int idchambre) const {
+		auto it = _chambresliste.begin();
+		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.id() == idchambre; });
+		if (it != _chambresliste.end()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	bool Hotel::checkDoublonChambre(Chambre chambre) const {
+		return checkDoublonChambre(chambre.id());
+	}
+
+	bool Hotel::checkDoublonReservation(int idresa) const {
+		auto it = _reservationsliste.begin();
+		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.idres() == idresa; });
+		if (it != _reservationsliste.end()) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+
+	bool Hotel::checkDoublonReservation(Reservation resa) const {
+		return checkDoublonReservation(resa.idres());
+	}
+
+	void operator<<(std::ostream& os, Hotel hotel){
 		hotel.displayHotel();
 	}
 }

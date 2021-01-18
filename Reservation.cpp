@@ -48,6 +48,17 @@ namespace gestion {
         _idroom = idroom;
     }
 
+    void Reservation::setIdclient(int idcli) {
+        _idcli = idcli;
+    }
+
+    void Reservation::setIdhot(int idhot) {
+        _idhot = idhot;
+    }
+
+    void Reservation::setIdres(int idres) {
+        _idres = idres;
+    }
     void Reservation::calc(double price_per_night, double remise) {
         int days = 0;
         date::Date dind = _dbegin;
@@ -117,13 +128,6 @@ namespace gestion {
         }
     }
 
-    void Reservation::setIdclient(int idcli) {
-        _idcli = idcli;
-    }
-
-    void Reservation::setIdhot(int idhot) {
-        _idhot = idhot;
-    }
 
 //free fonction -----------------------------------------------------------------------------------------------
 
