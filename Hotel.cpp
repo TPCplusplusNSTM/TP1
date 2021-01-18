@@ -21,6 +21,7 @@ namespace gestion {
 	}
 	void Hotel::addReservation(Reservation reservation) {
 		_reservationsliste.push_back(reservation);
+		reservation.reservation_to_string();
 	}
 	void Hotel::setNameHotel(std::string name) {
 		_name = name;

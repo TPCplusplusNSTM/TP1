@@ -60,7 +60,7 @@ namespace gestion {
     }
 
     std::string Reservation::reservation_to_string() {
-        return "idres = " + std::to_string(_idres) + ", dbegin = " + _dbegin.toString() + ", dend = " + _dend.toString() + ", idhot = " + std::to_string(_idhot) + ", idroom = " + std::to_string(_idroom) + ", idcli = " + std::to_string(_idcli) + ", total = " + std::to_string(_total);
+        return "idres = " + std::to_string(_idres) + ", date de début = " + _dbegin.toString() + ", date de fin = " + _dend.toString() + ", idhot = " + std::to_string(_idhot) + ", idroom = " + std::to_string(_idroom) + ", idcli = " + std::to_string(_idcli) + ", total = " + std::to_string(_total);
     }
 
     void Reservation::enterDates()
