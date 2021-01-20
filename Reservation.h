@@ -34,6 +34,8 @@ namespace gestion {
         void calc(double price_per_night, double remise);
         std::string reservation_to_string();
         void enterDates();
+        bool checkDates(Date a, Date b) const;
+        Date enterDate() const;
         int nbDates();    
     private:
         int _idres;

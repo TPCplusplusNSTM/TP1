@@ -18,6 +18,7 @@ namespace gestion {
 		void addChambre(Chambre chambre);
 		void addClient(Client client);
 		void addReservation(Reservation reservation);
+		Reservation createReservation();
 
 		void delChambre(int idchambre);
 		void delClient(int idclient);

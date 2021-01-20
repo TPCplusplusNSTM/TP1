@@ -9,6 +9,8 @@ namespace gestion {
 		Client(std::string name, int idclient);
 		int getIdClient() const;
 		std::string getName() const;
+		int getNbreservations() const;
+
 		void editClient(std::string name, int idclient);
 		std::string toStringClient() const;
 		void setName(std::string name);

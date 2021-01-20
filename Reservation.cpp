@@ -113,6 +113,40 @@ namespace gestion {
         std::cout << "Votre réservation comporte " << r.nbDates() << "nuits" << std::endl;
     }
 
+    Date Reservation::enterDate() const {
+        Date a;
+        bool estConforme = false;
+        int stockage;
+        while (not estConforme) {
+            std::cout << "Entrer l'année" << std::endl;
+            std::cin >> stockage;
+            a.setYear(stockage);
+            std::cout << "Entrer le mois" << std::endl;
+            std::cin >> stockage;
+            a.setMonth(stockage);
+            std::cout << "Entrer le jour" << std::endl;
+            std::cin >> stockage;
+            a.setDay(stockage);
+            if (a.checkDate()) {
+                estConforme = true;
+            }
+            else {
+                std::cout << "La date n'est pas conforme veuillez rentrer de nouveau la date" << std::endl;
+            }
+        }
+        return a;
+    }
+
+    bool Reservation::checkDates(Date a, Date b) const {
+        if (a.checkDate() && b.checkDate() && a <= b) {
+            return true;
+        }
+        else {
+            std::cout << "erreur : date debut > date fin " << std::endl;
+            return false;
+        }
+    }
+
     int Reservation::nbDates() {
         if (_dbegin.checkDate() && _dend.checkDate() && _dbegin <= _dend) {
             int days = 0;

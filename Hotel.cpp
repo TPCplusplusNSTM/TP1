@@ -29,6 +29,44 @@ namespace gestion {
 		_reservationsliste.push_back(reservation);
 		reservation.reservation_to_string();
 	}
+	Reservation Hotel::createReservation() {
+		Reservation a;
+		int index = -1;
+		Date db; Date de;
+		while (index == -1) {
+			std::cout << "entrez la date de debut de sejour" << std::endl;
+			db = a.enterDate();
+			std::cout << "entrez la date de fin de sejour" << std::endl;
+			de = a.enterDate();
+			while (a.checkDates(db, de) == false) {
+				std::cout << "entrez la date de debut de sejour" << std::endl;
+				db = a.enterDate();
+				std::cout << "entrez la date de fin de sejour" << std::endl;
+				de = a.enterDate();
+			}
+			genre type = chooseTypeRoom();
+			index = checkTypeDispo(type, db, de);
+		}
+		auto it =_chambresliste.begin()+ index;
+		int idclient = 0;
+		std::cout << "entrez l'ID du client" << std::endl;
+		std::cin >> idclient;
+		int idhotel = 0;
+		std::cout << "entrez l'ID de l'hotel" << std::endl;
+		std::cin >> idhotel;
+		int idresa = 0;
+		std::cout << "entrez l'ID de reservation" << std::endl;
+		std::cin >> idresa;
+		while (checkDoublonReservation(idresa) == false) {
+			if (checkDoublonReservation(idresa) == false) {
+				std::cout << "erreur: ID daje utilise" << std::endl;
+			}
+			std::cout << "entrez l'ID de reservation" << std::endl;
+			std::cin >> idresa;
+		}
+		Reservation r(idresa, db, de, idhotel, it->id(), idclient);
+		return r;
+	}
 
 	void Hotel::delChambre(int idchambre) {
 		int index = findChambre(idchambre);
@@ -53,7 +91,26 @@ namespace gestion {
 		_idhotel = id;
 	}
 	void Hotel::setReservation() {
-
+		std::cout << "vous avez selectionne modifier reservation" << std::endl;
+		int idresa = enterIDReservation();
+		searchAndDisplayReservation(idresa); bool test = false;
+		std::cout << "voulez-vous modifier cette reservation (Y/N)" << std::endl;
+		while (test == false) {
+			char a = 'a';
+			std::cin >> a;
+			if (a == 'Y') {
+				auto it = _reservationsliste.begin() + findReservation(idresa);
+				_reservationsliste.erase(it);
+				_reservationsliste.emplace_back(createReservation());
+				std::cout << "la reservation a bien ete modifie" << std::endl;
+				test = true;
+			} 
+			else if (a == 'N') {
+				std::cout << "annulation" << std::endl;
+				test = true;
+			}
+			else { std::cout << "veuillez saisir (Y/N)" << std::endl; }
+		}
 	}
 
 	int Hotel::checkTypeDispo(genre type, date::Date dbegin, date::Date dend) const{
@@ -92,7 +149,7 @@ namespace gestion {
 			++it;
 		}
 		std::cout << "Erreur: Chambre indisponible, veuillez inserer un autre type de chambre " << std::endl;
-		return index = 0;
+		return index = -1;
 	}
 
 	void Hotel::displayChambre(int index) const {
@@ -143,12 +200,13 @@ namespace gestion {
 	}
 
 	void Hotel::cancelReservation() {
-		std::cout << "vous avez sélectionné annuler reservation" << std::endl;
+		std::cout << "vous avez selectionne annuler reservation" << std::endl;
 		int idresa = enterIDReservation();
 		searchAndDisplayReservation(idresa); bool test = false;
 		std::cout << "voulez-vous annuler cette reservation (Y/N)" << std::endl;
 		while (test == false) {
 			char a = 'a';
+			std::cin >> a;
 			switch (a) {
 			case 'Y':
 				delReservation(idresa);
