@@ -131,12 +131,9 @@ namespace gestion {
 
 //free fonction -----------------------------------------------------------------------------------------------
 
-    std::ostream& operator<<(std::ostream& os, Reservation reservation) {
-        os << reservation.reservation_to_string() << std::endl;
-        return os;
-    }
 
-    genre chooseTypeRoom() {
+
+    genre chooseTypeRoom(){
         bool test = false;
         std::string type;
         genre typec = Single;
@@ -165,4 +162,17 @@ namespace gestion {
         }
         return typec;
     }
+
+    int enterIDReservation() {
+        int idresa = 0;
+        std::cout << "Veuillez entrer l'ID de reservation :" << std::endl;
+        std::cin >> idresa;
+        return idresa;
+    }
+
+    std::ostream& operator<<(std::ostream& os, Reservation reservation) {
+        os << reservation.reservation_to_string() << std::endl;
+        return os;
+    }
+
 }

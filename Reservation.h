@@ -34,9 +34,7 @@ namespace gestion {
         void calc(double price_per_night, double remise);
         std::string reservation_to_string();
         void enterDates();
-        int nbDates();
-
-        
+        int nbDates();    
     private:
         int _idres;
         date::Date _dbegin;
@@ -46,8 +44,9 @@ namespace gestion {
         int _idcli;
         double _total;
     };
-    std::ostream& operator<<(std::ostream& os, Reservation reservation);
     genre chooseTypeRoom();
+    int enterIDReservation();
+    std::ostream& operator<<(std::ostream& os, Reservation reservation);
 }
 
 #endif

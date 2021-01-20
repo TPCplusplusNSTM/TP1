@@ -19,20 +19,32 @@ namespace gestion {
 		void addClient(Client client);
 		void addReservation(Reservation reservation);
 
+		void delChambre(int idchambre);
+		void delClient(int idclient);
+		void delReservation(int idresa);
+
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
+		void setReservation();
 
 		int checkTypeDispo(genre type, date::Date ddebut, date::Date dfin) const; // permet de retourner l'index d'une chambre disponible, en fonction du genre et de la période.
 
-		void displayChambre(int index) const;
+		
+		void displayChambre(int index) const; // fonctions d'affichage 
 		void displayHotel() const;
 		void listChambres() const;
 		void listClients() const;
 		void listReservations() const;
-		int chooseClient(std::string name) const;
+
+		void cancelReservation(); //permet d'annuler une réservation
+		int chooseClient(std::string name) const; // retourne l'ID d'un client en fonction de son nom
+		int findChambre(int idchambre) const;
+		int findClient(int idclient) const;
+		int findReservation(int idresa) const; // retourne l'index de la réservation dans le vecteur
 		void searchAndDisplayReservation(int idresa) const; // affiche une reservation en fonction de son ID
-		void displayClientReservations(int idclient) const;
+
+		void displayClientReservations(int idclient) const; // affiche les réservations d'un client
 		void displayClientReservations(std::string nom) const;
 
 		int newIdClient(); // créer un identifiant utilisable
