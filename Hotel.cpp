@@ -59,7 +59,7 @@ namespace gestion {
 		std::cin >> idresa;
 		while (checkDoublonReservation(idresa) == false) {
 			if (checkDoublonReservation(idresa) == false) {
-				std::cout << "erreur: ID daje utilise" << std::endl;
+				std::cout << "erreur: ID deja utilise" << std::endl;
 			}
 			std::cout << "entrez l'ID de reservation" << std::endl;
 			std::cin >> idresa;
@@ -237,7 +237,7 @@ namespace gestion {
 			}
 			++it;
 		}
-		std::cout << "Choisissez le numéro devant le client vous convenant" << std::endl;
+		std::cout << "Choisissez le numero devant le client vous convenant" << std::endl;
 		std::cin >> numeroclient; // On conserve le numéro devant le client voulu
 		auto it1 = stockage.begin();
 		while (it1 != stockage.end()) {
@@ -247,7 +247,7 @@ namespace gestion {
 			++it1;
 			indice++;
 		}
-		std::cout << "Aucun client ne porte ce nom ou le numéro du client choisi est erroné, veuillez recommencer" << std::endl;
+		std::cout << "Aucun client ne porte ce nom ou le numero du client choisi est errone, veuillez recommencer" << std::endl;
 		assert(indice > numeroclient && numeroclient >= 1); // On met une condition qui ne peut être vrai à la sortie de la boucle ce qui permet d'arrêter le programme 
 	}
 
@@ -308,7 +308,7 @@ namespace gestion {
 			}
 		}
 		if (results.empty() == false) {
-			std::cout << "liste des réservations du client :" << std::to_string(idclient) << std::endl;
+			std::cout << "liste des reservations du client :" << std::to_string(idclient) << std::endl;
 			auto it = results.begin();
 			while (it != results.end()) {
 				std::cout << *it;
@@ -316,7 +316,7 @@ namespace gestion {
 			}
 		}
 		else {
-			std::cout << "Le client sélectionné n'a pas de réservations" << std::endl;
+			std::cout << "Le client selectionne n'a pas de reservations" << std::endl;
 		}
 	}
 
