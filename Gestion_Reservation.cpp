@@ -25,7 +25,11 @@ void testclasseChambre() {
 void testclasseHotel() {
 	std::cout << "On cree un hotel ayant pour nom Hotel Fortune, pour ville Londres, pour identifiant 10 et pour capacité maximale de chambres 80" << std::endl;
 	gestion::Hotel hot("HotelFortune", "Londres", 10, 80);
-	//A compléter avec Tanguy (4.b ?)
+	gestion::Chambre cha(2112, Suite, 180);// on crée la chambre cha
+	std::cout << hot;
+	std::cout << "On va ajouter la chambre dans l'hotel avec la fonction addchambre()" << std::endl;
+	hot.addChambre(cha);
+	std::cout << hot;
 }
 
 void testclasseReservation() {

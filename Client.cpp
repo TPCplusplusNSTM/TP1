@@ -31,7 +31,6 @@ namespace gestion {
 		_name = name;
 	}
 	void Client::setIdClient(int idclient) {
-		assert(idclient != 0);
 		_idclient = idclient;
 	}
 
