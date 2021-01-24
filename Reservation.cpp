@@ -70,6 +70,10 @@ namespace gestion {
         std::cout << "Le prix du sejour sera de " << _total << " euros" << std::endl;
     }
 
+   void Reservation::setTotal(double total) {
+        _total = total;
+    }
+
     std::string Reservation::reservation_to_string() {
         return "idres = " + std::to_string(_idres) + ", date de debut = " + _dbegin.toString() + ", date de fin = " + _dend.toString() + ", idhot = " + std::to_string(_idhot) + ", idroom = " + std::to_string(_idroom) + ", idcli = " + std::to_string(_idcli) + ", total = " + std::to_string(_total);
     }

@@ -55,6 +55,16 @@ void testValidationDates() {
 	r.enterDates();
 }
 
+
+void testChoixClient(gestion::Hotel& h1, date::Date& d9, date::Date& d10) {
+	genre a = gestion::chooseTypeRoom();
+	int index = h1.checkTypeDispo(a, d9, d10);
+}
+
+//====================================================================================================
+// DEBUT MAIN PROGRAMME
+//====================================================================================================
+
 int main() {
 	// Q.6)
 	std::cout << "Question 6)" << std::endl;
@@ -158,6 +168,14 @@ int main() {
 	system("PAUSE");
 	std::cout << std::endl;
 
+	//Question 8
+	std::cout << "Question 7" << std::endl;
+	testChoixClient(h1,d9,d10);
+	std::cout << std::endl;
+	system("PAUSE");
+	std::cout << std::endl;
+
+
 
 	/*9.c) Affichage d'un client
 	int clicli = h1.chooseClient("Jacky");
@@ -165,28 +183,7 @@ int main() {
 	*/
 
 
-	// 8.a)
-		/*genre a = gestion::chooseTypeRoom();
-		if (a == 0) {
-			std::cout << "a = Single" << std::endl;
-		}
-		else {
-			if (a == 1) {
-				std::cout << "a = Double" << std::endl;
-			}
-			else {
-				if (a == 2) {
-					std::cout << "a = Suite" << std::endl;
-				}
-				else {
-					std::cout << "a = Twin" << std::endl;
-				}
-			}
-		}
-		// 8.b)
-		int index = h1.checkTypeDispo(a, d9, d10);
-		h1.displayChambre(index);
-
+/*
 			//10.c)
 		gestion::Reservation ri;
 		double prix_nuit;
@@ -274,4 +271,6 @@ h1.listReservations();
 	return 0;
 	*/
 }
+
+
 

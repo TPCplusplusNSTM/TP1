@@ -32,6 +32,8 @@ namespace gestion {
         void setIdres(int idres);
 
         void calc(double price_per_night, double remise);
+        void setTotal(double total);
+
         std::string reservation_to_string();
         void enterDates();
         bool checkDates(Date a, Date b) const;

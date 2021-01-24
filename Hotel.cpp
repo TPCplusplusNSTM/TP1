@@ -400,6 +400,36 @@ namespace gestion {
 		return checkDoublonReservation(resa.idres());
 	}
 
+	double priceRoom(Hotel hotel, int idroom) {
+		std::vector<Chambre> chambresliste = hotel.getListChambre();
+		auto it = chambresliste.begin();
+		it = find_if(it, chambresliste.end(), [idroom](const Chambre& obj) {return obj.id() == idroom; });
+		if (it != chambresliste.end()) {
+			std::cout << "chambre choisi : " << *it;
+			return it->price();
+		}
+		else {
+			assert(it == chambresliste.end() && "erreur : la chambre choisi n'existe pas");
+		}
+	}
+
+	void calc(Hotel hotel, Reservation reservation) {
+		double remise;
+		std::cout << "Entrer la remise faite : ";
+		std::cin >> remise;
+		std::cout << std::endl;
+		double price = priceRoom(hotel, reservation.idroom());
+		int days = 0;
+		date::Date dind = reservation.dbegin();
+		while (dind != reservation.dend()) {
+			dind.nextDay();
+			days++;
+		};
+		double total = price * days * (1 - remise / 100);
+		reservation.setTotal(total);
+		std::cout << "Le prix du sejour sera de " << total << " euros" << std::endl;
+	}
+	
 	void operator<<(std::ostream& os, Hotel hotel){
 		hotel.displayHotel();
 	}
