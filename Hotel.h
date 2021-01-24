@@ -41,7 +41,9 @@ namespace gestion {
 		void cancelReservation(); //permet d'annuler une réservation
 		int chooseClient(std::string name) const; // retourne l'ID d'un client en fonction de son nom
 		int findChambre(int idchambre) const;
+		void searchAndDisplayChambre(int idchambre) const;
 		int findClient(int idclient) const;
+		void searchAndDisplayClient(int idclient) const; // affiche un client en fonction de son ID
 		int findReservation(int idresa) const; // retourne l'index de la réservation dans le vecteur
 		void searchAndDisplayReservation(int idresa) const; // affiche une reservation en fonction de son ID
 

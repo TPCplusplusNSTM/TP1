@@ -55,10 +55,18 @@ void testValidationDates() {
 	r.enterDates();
 }
 
-
-void testChoixClient(gestion::Hotel& h1, date::Date& d9, date::Date& d10) {
+void testChoixChambre(gestion::Hotel& h1, date::Date& d9, date::Date& d10) {
 	genre a = gestion::chooseTypeRoom();
 	int index = h1.checkTypeDispo(a, d9, d10);
+}
+
+void testChoixClient(gestion::Hotel& h1) {
+	std::cout << " voici afficher les clients de l'hotel : " << std::endl;
+	h1.listClients();
+	std::string nom = gestion::enterClient();
+	int idclient = h1.chooseClient(nom);
+	int index = h1.findClient(idclient);
+	h1.searchAndDisplayClient(index);
 }
 
 //====================================================================================================
@@ -169,19 +177,30 @@ int main() {
 	std::cout << std::endl;
 
 	//Question 8
-	std::cout << "Question 7" << std::endl;
-	testChoixClient(h1,d9,d10);
+	std::cout << "Question 8" << std::endl;
+	testChoixChambre(h1,d9,d10);
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
 
+	//Question 9
+	std::cout << "Question 9" << std::endl;
+	testChoixClient(h1);
+	std::cout << std::endl;
+	system("PAUSE");
+	std::cout << std::endl;
 
+	//Question 10
+	std::cout << "Question 10" << std::endl;
+	std::cout << std::endl;
+	system("PAUSE");
+	std::cout << std::endl;
 
-	/*9.c) Affichage d'un client
-	int clicli = h1.chooseClient("Jacky");
-	std::cout << clicli << std::endl;
-	*/
-
+	//Question 11
+	std::cout << "Question 11" << std::endl;
+	std::cout << std::endl;
+	system("PAUSE");
+	std::cout << std::endl;
 
 /*
 			//10.c)

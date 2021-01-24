@@ -262,12 +262,35 @@ namespace gestion {
 			assert(it == _chambresliste.end() && "erreur : la chambre choisi n'existe pas");
 		}
 	}
+
+	void Hotel::searchAndDisplayChambre(int idchambre) const {
+		auto it = _chambresliste.begin();
+		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.id() == idchambre; });
+		if (it != _chambresliste.end()) {
+			std::cout << "chambre choisi : " << *it;
+		}
+		else {
+			assert(it == _chambresliste.end() && "erreur : la chambre choisi n'existe pas");
+		}
+	}
+
 	int Hotel::findClient(int idclient) const {
 		auto it = _clientsliste.begin();
 		it = find_if(it, _clientsliste.end(), [idclient](const Client& obj) {return obj.getIdClient() == idclient; });
 		if (it != _clientsliste.end()) {
 			std::cout << "client choisi : " << *it;
 			return std::distance(_clientsliste.begin(), it);
+		}
+		else {
+			assert(it == _clientsliste.end() && "erreur : le client choisi n'existe pas");
+		}
+	}
+
+	void Hotel::searchAndDisplayClient(int idclient) const {
+		auto it = _clientsliste.begin();
+		it = find_if(it, _clientsliste.end(), [idclient](const Client& obj) {return obj.getIdClient() == idclient; });
+		if (it != _clientsliste.end()) {
+			std::cout << "client choisi : " << *it;
 		}
 		else {
 			assert(it == _clientsliste.end() && "erreur : le client choisi n'existe pas");
