@@ -49,7 +49,15 @@ void testclasseReservation() {
 	res.calc(100, 10);
 }
 
+void testValidationDates() {
+	std::cout << "On va choisir les dates de réservations et afficher le nombre de nuits" << std::endl;
+	gestion::Reservation r; // l'utilisateur ne pourra pas créer de réservations vide, nous utilisons le constructeur par défaut pour plus de simplicitée.
+	r.enterDates();
+}
+
 int main() {
+	// Q.6)
+	std::cout << "Question 6)" << std::endl;
 	//Création objet hotel
 	gestion::Hotel h1("Le grand bleu", "Marseille", 1, 10);
 
@@ -111,30 +119,44 @@ int main() {
 	//affichage de l'hôtel
 	std::cout << h1;
 	system("PAUSE");
+	std::cout << std::endl;
+
+	//----------------------------------------------------------------------------------------------------------------------
 
 	//Question 2
 	std::cout << "Question 2" << std::endl;
 	testclasseClient();
 	std::cout << std::endl;
 	system("PAUSE");
+	std::cout << std::endl;
 
 	//Question 3
 	std::cout << "Question 3" << std::endl;
 	testclasseChambre();
 	std::cout << std::endl;
 	system("PAUSE");
+	std::cout << std::endl;
 
 	//Question 4
 	std::cout << "Question 4" << std::endl;
 	testclasseHotel();
 	std::cout << std::endl;
 	system("PAUSE");
+	std::cout << std::endl;
 
 	//Question 5
 	std::cout << "Question 5" << std::endl;
 	testclasseReservation();
 	std::cout << std::endl;
 	system("PAUSE");
+	std::cout << std::endl;
+
+	//Question 7
+	std::cout << "Question 7" << std::endl;
+	testValidationDates();
+	std::cout << std::endl;
+	system("PAUSE");
+	std::cout << std::endl;
 
 
 	/*9.c) Affichage d'un client

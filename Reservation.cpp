@@ -80,22 +80,22 @@ namespace gestion {
         int stockage;
         bool estConforme = false;
         while (not estConforme) {
-            std::cout << "Entrer l'annee de votre première date de reservation" << std::endl;
+            std::cout << "Entrer l'annee de votre premiere date de reservation" << std::endl;
             std::cin >> stockage;
             a.setYear(stockage);
-            std::cout << "Entrer le mois de votre première date de reservation" << std::endl;
+            std::cout << "Entrer le mois de votre premiere date de reservation" << std::endl;
             std::cin >> stockage;
             a.setMonth(stockage);
-            std::cout << "Entrer le jour de votre première date de reservation" << std::endl;
+            std::cout << "Entrer le jour de votre premiere date de reservation" << std::endl;
             std::cin >> stockage;
             a.setDay(stockage);
-            std::cout << "Entrer l'annee de votre deuxième date de reservation" << std::endl;
+            std::cout << "Entrer l'annee de votre deuxieme date de reservation" << std::endl;
             std::cin >> stockage;
             b.setYear(stockage);
-            std::cout << "Entrer le mois de votre deuxième date de reservation" << std::endl;
+            std::cout << "Entrer le mois de votre deuxieme date de reservation" << std::endl;
             std::cin >> stockage;
             b.setMonth(stockage);
-            std::cout << "Entrer le jour de votre deuxième date de reservation" << std::endl;
+            std::cout << "Entrer le jour de votre deuxieme date de reservation" << std::endl;
             std::cin >> stockage;
             b.setDay(stockage);
             if (a.checkDate() && b.checkDate() && a <= b) {
@@ -110,7 +110,7 @@ namespace gestion {
         Reservation r;
         r.setDbegin(a);
         r.setDend(b);
-        std::cout << "Votre reservation comporte " << r.nbDates() << "nuits" << std::endl;
+        std::cout << "Votre reservation comporte " << r.nbDates() << " nuits " << std::endl;
     }
 
     Date Reservation::enterDate() const {
