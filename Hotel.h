@@ -17,6 +17,7 @@ namespace gestion {
 
 		void addChambre(Chambre chambre);
 		void addClient(Client client);
+		int testAndAddClient(); // utilisé dans createReservation : vérifie si le client est dans l'hotel et retourne son id / sinon crée un nouveau client avec un id valide
 		void addReservation(Reservation reservation);
 		Reservation createReservation();
 
@@ -39,6 +40,7 @@ namespace gestion {
 		void listReservations() const;
 
 		void cancelReservation(); //permet d'annuler une réservation
+
 		int chooseClient(std::string name) const; // retourne l'ID d'un client en fonction de son nom
 		int findChambre(int idchambre) const;
 		void searchAndDisplayChambre(int idchambre) const;

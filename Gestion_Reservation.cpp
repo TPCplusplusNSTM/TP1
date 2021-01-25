@@ -81,25 +81,24 @@ void testValidationReservation(gestion::Hotel& h1) {
 	h1.listReservations();
 }
 
-void testGestionReservations() {
-	//11.b)
-	//h1.searchAndDisplayReservation(4);
-
+void testGestionReservations(gestion::Hotel& h1) {
+//11.b)
+	std::cout << " reservation ID = 4 : " << std::endl;
+	h1.searchAndDisplayReservation(4);
 //11.c)
-	//h1.displayClientReservations("Michel");
+	std::cout << " reservations de Michel : " << std::endl;
+	h1.displayClientReservations("Michel");
 
-/*11.e)
-h1.listReservations();
-h1.cancelReservation();
-h1.listReservations();
-*/
-
-/* 11 d)
-h1.listReservations();
-h1.setReservation();
-h1.listReservations();
-	return 0;
-	*/
+//11.e)
+	std::cout << " suppression de reservation: " << std::endl;
+	h1.listReservations();
+	h1.cancelReservation();
+	h1.listReservations();
+//11 d)
+	std::cout << " modification de reservation: " << std::endl;
+	h1.listReservations();
+	h1.setReservation();
+	h1.listReservations();
 }
 
 //====================================================================================================
@@ -232,11 +231,11 @@ int main() {
 
 	//Question 11
 	std::cout << "Question 11" << std::endl;
-	testGestionReservations();
+	testGestionReservations(h1);
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
-
+	return 0;
 }
 
 //====================================================================================================

@@ -24,6 +24,34 @@ namespace gestion {
 		assert(checkDoublonClient(client) && "erreur : ID deja defini");
 		_clientsliste.push_back(client);
 	}
+	int Hotel::testAndAddClient() {
+		int id = -1;
+		//On demande le nom client ayant fait la réservation
+		std::string name = gestion::enterClient();
+
+		//On demande si le client est déja dans l'hôtel
+		std::string estDansHotel = "test";
+		while (estDansHotel == "test") {
+			std::cout << "Le client est-il nouveau dans l'hôtel ? Entrer oui/non :";
+			std::cin >> estDansHotel;
+			std::cout << std::endl;
+
+			//Si il n'est pas dans l'hôtel on l'ajoute, sinon on demande de choisir quel client choisir
+			if (estDansHotel == "oui") {
+				id = newIdClient();
+				gestion::Client c(name, id);
+				addClient(c);
+			}
+			else if (estDansHotel == "non") {
+				id = chooseClient(name);
+			}
+			else {
+				estDansHotel = "test";
+				std::cout << "Erreur : veuillez entrer oui/non :" << std::endl;
+			}
+		}
+		return id;
+	}
 	void Hotel::addReservation(Reservation reservation) {
 		assert(checkDoublonReservation(reservation) && "erreur : ID deja defini");
 		_reservationsliste.push_back(reservation);
@@ -33,8 +61,8 @@ namespace gestion {
 		gestion::Reservation ri;
 		double prix_nuit = 0.0;
 		double remise = 0.0;
-		int id =0;
-		std::string estDansHotel = "test";
+		int id = 0;
+		
 
 		//On suppose que l'on rajoute les réservations dans l'hôtel h1
 		ri.setIdhot(getIdHotel());
@@ -64,32 +92,9 @@ namespace gestion {
 		std::vector<gestion::Chambre> listechambres = getListChambre();
 		ri.setIdroom(listechambres[index].id());
 
-		//On demande le nom client ayant fait la réservation
-		std::string name = gestion::enterClient();
-
-		//On demande si le client est déja dans l'hôtel
-		while (estDansHotel == "test") {
-			std::cout << "Le client est-il nouveau dans l'hôtel ? Entrer oui/non :";
-			std::cin >> estDansHotel;
-			std::cout << std::endl;
-
-			//Si il n'est pas dans l'hôtel on l'ajoute, sinon on demande de choisir quel client choisir
-			if (estDansHotel == "oui") {
-				id = newIdClient();
-				gestion::Client c(name, id);
-				addClient(c);
-			}
-			else if (estDansHotel == "non") {
-				id = chooseClient(name);
-				Client g(name, id);
-				addClient(g);
-			}
-			else {
-				estDansHotel = "test";
-				std::cout << "Erreur : veuillez entrer oui/non :" << std::endl;
-			}
-		}
+		
 		//On ajoute l'identifiant du client à la réservation
+		id = testAndAddClient();
 		ri.setIdclient(id);
 
 		//On affecte un identifiant de réservation
@@ -123,16 +128,69 @@ namespace gestion {
 	void Hotel::setReservation() {
 		std::cout << "vous avez selectionne modifier reservation" << std::endl;
 		int idresa = enterIDReservation();
+		assert(checkDoublonReservation(idresa) == false && "Erreur : la reservation selectionne n'existe pas");
+		auto it = _reservationsliste.begin() + findReservation(idresa);
 		searchAndDisplayReservation(idresa); bool test = false;
 		std::cout << "voulez-vous modifier cette reservation (Y/N)" << std::endl;
 		while (test == false) {
 			char a = 'a';
 			std::cin >> a;
 			if (a == 'Y') {
-				auto it = _reservationsliste.begin() + findReservation(idresa);
-				_reservationsliste.erase(it);
-				_reservationsliste.emplace_back(createReservation());
-				std::cout << "la reservation a bien ete modifie" << std::endl;
+				std::cout << "entrez le numéro correspondant au type de modifications : " << std::endl;
+				std::cout << " (1) : ID reservation " << std::endl;
+				std::cout << " (2) : Dates de réservations " << std::endl;
+				std::cout << " (3) : ID hotel " << std::endl;
+				std::cout << " (4) : ID client " << std::endl;
+				int b = 0;
+				std::cin >> b;
+				if (b == 1) {
+					int id = -1;
+					std::cout << " entrez l'ID de reservation souhaite " << std::endl;
+					std::cin >> id;
+					if (checkDoublonReservation(id) == true && id >= 0) {
+						it->setIdres(id);
+					}
+					else { std::cout << "Erreur : l'ID selectionne existe deja ou est negatif " << std::endl; }
+				}
+				else if (b == 2) {
+					double prix_nuit = 0.0;
+					double remise = 0.0;
+					int index = -1;
+					it->enterDates();
+
+					//On demande ensuite le prix d'une nuit et la remise sur le séjour
+					std::cout << "Entrer le prix d'une nuit: ";
+					std::cin >> prix_nuit;
+					std::cout << std::endl << "Entrer la remise: ";
+					std::cin >> remise;
+					std::cout << std::endl;
+
+					//On calcule le prix du séjour
+					it->calc(prix_nuit, remise);
+
+					//On demande le type de chambre
+					genre type = gestion::chooseTypeRoom();
+
+					//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
+					index = checkTypeDispo(type, it->dbegin(), it->dend()); // revoie -1 si chambre indisponible
+
+
+					//On ajoute l'identifiant de la chambre à la réservation
+					std::vector<gestion::Chambre> listechambres = getListChambre();
+					it->setIdroom(listechambres[index].id());
+				}
+				else if (b==3){
+					std::cout << " entrez l'ID d'hotel souhaite " << std::endl;
+					int id = -1;
+					std::cin >> id;
+					it->setIdhot(id);
+				}
+				else if (b == 4) {
+					int id = -1;
+					id = testAndAddClient();
+					it->setIdclient(id);
+				}
+				else { std::cout << " Erreur : aucune option sélectionne " << std::endl; }
 				test = true;
 			} 
 			else if (a == 'N') {
@@ -181,6 +239,7 @@ namespace gestion {
 		std::cout << "Erreur: Chambre indisponible, veuillez inserer un autre type de chambre " << std::endl;
 		return index = -1;
 	}
+
 
 	void Hotel::displayChambre(int index) const {
 		auto it = _chambresliste.begin() + index;
