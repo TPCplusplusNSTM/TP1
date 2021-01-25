@@ -30,42 +30,72 @@ namespace gestion {
 		reservation.reservation_to_string();
 	}
 	Reservation Hotel::createReservation() {
-		Reservation a;
+		gestion::Reservation ri;
+		double prix_nuit = 0.0;
+		double remise = 0.0;
+		int id =0;
+		std::string estDansHotel = "test";
+
+		//On suppose que l'on rajoute les réservations dans l'hôtel h1
+		ri.setIdhot(getIdHotel());
 		int index = -1;
-		Date db; Date de;
-		while (index == -1) {
-			std::cout << "entrez la date de debut de sejour" << std::endl;
-			db = a.enterDate();
-			std::cout << "entrez la date de fin de sejour" << std::endl;
-			de = a.enterDate();
-			while (a.checkDates(db, de) == false) {
-				std::cout << "entrez la date de debut de sejour" << std::endl;
-				db = a.enterDate();
-				std::cout << "entrez la date de fin de sejour" << std::endl;
-				de = a.enterDate();
+			while (index == -1) { // cette boucle while sert en cas de chambre indisponible
+			// On commence par entrer les dates dans la reservation
+			ri.enterDates();
+
+			//On demande ensuite le prix d'une nuit et la remise sur le séjour
+			std::cout << "Entrer le prix d'une nuit: ";
+			std::cin >> prix_nuit;
+			std::cout << std::endl << "Entrer la remise: ";
+			std::cin >> remise;
+			std::cout << std::endl;
+
+			//On calcule le prix du séjour
+			ri.calc(prix_nuit, remise);
+
+			//On demande le type de chambre
+			genre type = gestion::chooseTypeRoom();
+
+			//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
+			index = checkTypeDispo(type, ri.dbegin(), ri.dend()); // revoie -1 si chambre indisponible
 			}
-			genre type = chooseTypeRoom();
-			index = checkTypeDispo(type, db, de);
-		}
-		auto it =_chambresliste.begin()+ index;
-		int idclient = 0;
-		std::cout << "entrez l'ID du client" << std::endl;
-		std::cin >> idclient;
-		int idhotel = 0;
-		std::cout << "entrez l'ID de l'hotel" << std::endl;
-		std::cin >> idhotel;
-		int idresa = 0;
-		std::cout << "entrez l'ID de reservation" << std::endl;
-		std::cin >> idresa;
-		while (checkDoublonReservation(idresa) == false) {
-			if (checkDoublonReservation(idresa) == false) {
-				std::cout << "erreur: ID deja utilise" << std::endl;
+
+		//On ajoute l'identifiant de la chambre à la réservation
+		std::vector<gestion::Chambre> listechambres = getListChambre();
+		ri.setIdroom(listechambres[index].id());
+
+		//On demande le nom client ayant fait la réservation
+		std::string name = gestion::enterClient();
+
+		//On demande si le client est déja dans l'hôtel
+		while (estDansHotel == "test") {
+			std::cout << "Le client est-il nouveau dans l'hôtel ? Entrer oui/non :";
+			std::cin >> estDansHotel;
+			std::cout << std::endl;
+
+			//Si il n'est pas dans l'hôtel on l'ajoute, sinon on demande de choisir quel client choisir
+			if (estDansHotel == "oui") {
+				id = newIdClient();
+				gestion::Client c(name, id);
+				addClient(c);
 			}
-			std::cout << "entrez l'ID de reservation" << std::endl;
-			std::cin >> idresa;
+			else if (estDansHotel == "non") {
+				id = chooseClient(name);
+				Client g(name, id);
+				addClient(g);
+			}
+			else {
+				estDansHotel = "test";
+				std::cout << "Erreur : veuillez entrer oui/non :" << std::endl;
+			}
 		}
-		Reservation r(idresa, db, de, idhotel, it->id(), idclient);
-		return r;
+		//On ajoute l'identifiant du client à la réservation
+		ri.setIdclient(id);
+
+		//On affecte un identifiant de réservation
+		ri.setIdres(newIdReservation());
+		
+	return ri; //On retourne la réservation
 	}
 
 	void Hotel::delChambre(int idchambre) {

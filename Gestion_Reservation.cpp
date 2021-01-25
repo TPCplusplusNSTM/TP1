@@ -1,6 +1,10 @@
 #include "Hotel.h"
 #include <cstdlib>
 
+//====================================================================================================
+//FONCTIONS DE TEST
+//====================================================================================================
+
 void testclasseClient() {
 	std::cout << "On cree un client s'appelant Delacroix Michel et on lui attribue l'identifiant 1234 puis on verifie si tout fonctionne en utilisant ses getters" << std::endl;
 	gestion::Client cli("Delacroix Michel", 1234);
@@ -58,6 +62,8 @@ void testValidationDates() {
 void testChoixChambre(gestion::Hotel& h1, date::Date& d9, date::Date& d10) {
 	genre a = gestion::chooseTypeRoom();
 	int index = h1.checkTypeDispo(a, d9, d10);
+	std::cout << "la chambre choisie est :" << std::endl;
+	h1.displayChambre(index);
 }
 
 void testChoixClient(gestion::Hotel& h1) {
@@ -67,6 +73,33 @@ void testChoixClient(gestion::Hotel& h1) {
 	int idclient = h1.chooseClient(nom);
 	int index = h1.findClient(idclient);
 	h1.searchAndDisplayClient(index);
+}
+
+void testValidationReservation(gestion::Hotel& h1) {
+	h1.listReservations();
+	h1.addReservation(h1.createReservation());
+	h1.listReservations();
+}
+
+void testGestionReservations() {
+	//11.b)
+	//h1.searchAndDisplayReservation(4);
+
+//11.c)
+	//h1.displayClientReservations("Michel");
+
+/*11.e)
+h1.listReservations();
+h1.cancelReservation();
+h1.listReservations();
+*/
+
+/* 11 d)
+h1.listReservations();
+h1.setReservation();
+h1.listReservations();
+	return 0;
+	*/
 }
 
 //====================================================================================================
@@ -192,104 +225,21 @@ int main() {
 
 	//Question 10
 	std::cout << "Question 10" << std::endl;
+	testValidationReservation(h1);
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
 
 	//Question 11
 	std::cout << "Question 11" << std::endl;
+	testGestionReservations();
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
 
-/*
-			//10.c)
-		gestion::Reservation ri;
-		double prix_nuit;
-		double remise;
-		int id;
-		std::string estDansHotel;
-
-		//On suppose que l'on rajoute les réservations dans l'hôtel h1
-		ri.setIdhot(h1.getIdHotel());
-
-		//On ajoute au fur et à mesure les 5 réservations en introduisant les différents problèmes
-		for (int i = 0; i < 5; i++) {
-
-			// On commence par entrer les dates dans la reservartion
-			ri.enterDates();
-
-			//On demande ensuite le prix d'une nuit et la remise sur le séjour
-			std::cout << "Entrer le prix d'une nuit: ";
-			std::cin >> prix_nuit;
-			std::cout << std::endl << "Entrer la remise: ";
-			std::cin >> remise;
-			std::cout << std::endl;
-
-			//On calcule le prix du séjour
-			ri.calc(prix_nuit, remise);
-
-			//On demande le type de chambre
-			genre type = gestion::chooseTypeRoom();
-
-			//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
-			int index = h1.checkTypeDispo(type, ri.dbegin(), ri.dend());
-
-			//On ajoute l'identifiant de la chambre à la réservation
-			std::vector<gestion::Chambre> listechambres = h1.getListChambre();
-			ri.setIdroom(listechambres[index].id());
-
-			//On demande le nom client ayant fait la réservation
-			std::string name = gestion::enterClient();
-
-			//On demande si le client est déja dans l'hôtel
-			std::cout << "Le client est-il nouveau dans l'hôtel ? Entrer oui/non :";
-			std::cin >> estDansHotel;
-			std::cout << std::endl;
-
-			//Si il n'est pas dans l'hôtel on l'ajoute, sinon on demande de choisir quel client choisir
-			if (estDansHotel == "non") {
-				id = h1.newIdClient();
-				gestion::Client c(name, id);
-				h1.addClient(c);
-			}
-			else {
-				id = h1.chooseClient(name);
-			}
-
-			//On ajoute l'identifiant du client à la réservation
-			ri.setIdclient(id);
-
-			//On affecte un identifiant de réservation
-			ri.setIdres(h1.newIdReservation());
-
-			//On ajoute la réservation à l'hôtel
-			h1.addReservation(ri);
-
-			//On regarde si la réservation a bien été ajoutée (il suffit de regarder la dernière ligne
-			h1.listReservations();
-		}
-	*/
-
-	//11.b)
-		//h1.searchAndDisplayReservation(4);
-
-	//11.c)
-		//h1.displayClientReservations("Michel");
-
-	/*11.e)
-	h1.listReservations();
-	h1.cancelReservation();
-	h1.listReservations();
-	*/
-
-/* 11 d)
-h1.listReservations();
-h1.setReservation();
-h1.listReservations();
-	return 0;
-	*/
 }
 
-
+//====================================================================================================
+// FIN MAIN PROGRAMME
+//====================================================================================================
 
