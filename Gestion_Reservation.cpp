@@ -71,8 +71,7 @@ void testChoixClient(gestion::Hotel& h1) {
 	h1.listClients();
 	std::string nom = gestion::enterClient();
 	int idclient = h1.chooseClient(nom);
-	int index = h1.findClient(idclient);
-	h1.searchAndDisplayClient(index);
+	h1.searchAndDisplayClient(idclient);
 }
 
 void testValidationReservation(gestion::Hotel& h1) {
@@ -84,18 +83,25 @@ void testValidationReservation(gestion::Hotel& h1) {
 void testGestionReservations(gestion::Hotel& h1) {
 //11.b)
 	std::cout << " reservation ID = 4 : " << std::endl;
+	std::cout << std::endl;
 	h1.searchAndDisplayReservation(4);
+	std::cout << std::endl;
 //11.c)
 	std::cout << " reservations de Michel : " << std::endl;
+	std::cout << std::endl;
 	h1.displayClientReservations("Michel");
+	std::cout << std::endl;
 
 //11.e)
 	std::cout << " suppression de reservation: " << std::endl;
+	std::cout << std::endl;
 	h1.listReservations();
 	h1.cancelReservation();
 	h1.listReservations();
+	std::cout << std::endl;
 //11 d)
 	std::cout << " modification de reservation: " << std::endl;
+	std::cout << std::endl;
 	h1.listReservations();
 	h1.setReservation();
 	h1.listReservations();
@@ -172,7 +178,7 @@ int main() {
 	std::cout << std::endl;
 
 	//----------------------------------------------------------------------------------------------------------------------
-
+	/*
 	//Question 2
 	std::cout << "Question 2" << std::endl;
 	testclasseClient();
@@ -200,28 +206,28 @@ int main() {
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
-
+	
 	//Question 7
 	std::cout << "Question 7" << std::endl;
 	testValidationDates();
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
-
+	
 	//Question 8
 	std::cout << "Question 8" << std::endl;
 	testChoixChambre(h1,d9,d10);
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
-
+	
 	//Question 9
 	std::cout << "Question 9" << std::endl;
 	testChoixClient(h1);
 	std::cout << std::endl;
 	system("PAUSE");
 	std::cout << std::endl;
-
+	*/
 	//Question 10
 	std::cout << "Question 10" << std::endl;
 	testValidationReservation(h1);
@@ -236,6 +242,7 @@ int main() {
 	system("PAUSE");
 	std::cout << std::endl;
 	return 0;
+	
 }
 
 //====================================================================================================

@@ -4,6 +4,7 @@
 #include "Chambre.h"
 #include "Client.h"
 #include <vector>
+#include <cassert>
 
 
 using date::Date;

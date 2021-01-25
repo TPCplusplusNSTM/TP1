@@ -1,7 +1,7 @@
 #include "Hotel.h"
 
 namespace gestion {
-	Hotel::Hotel(std::string name, std::string ville, int idhotel, int maxnbchambres) : _name(name), _idhotel(idhotel), _ville(ville), _maxnbchambres(maxnbchambres) {}
+	Hotel::Hotel(std::string name, std::string ville, int idhotel, int maxnbchambres) : _name(name), _idhotel(idhotel), _ville(ville), _maxnbchambres(maxnbchambres) { assert(idhotel >= 0 && maxnbchambres >= 0); }
 	std::string Hotel::getNameHotel() const {
 		return _name;
 	}

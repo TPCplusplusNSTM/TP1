@@ -1,8 +1,8 @@
 #include "Chambre.h"
-
+#include <cassert>
 namespace gestion {
 
-    Chambre::Chambre(int id, genre type, double price) : _id(id), _type(type), _price(price) {}
+    Chambre::Chambre(int id, genre type, double price) : _id(id), _type(type), _price(price) { assert(id >= 0); }
 
     int Chambre::getIdChambre() const {
         return _id;
