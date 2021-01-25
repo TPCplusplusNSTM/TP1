@@ -29,6 +29,7 @@ namespace gestion {
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
 		void setReservation();
+		void setDatesAndRoom(Reservation& resa);
 
 		int checkTypeDispo(genre type, date::Date ddebut, date::Date dfin) const; // permet de retourner l'index d'une chambre disponible, en fonction du genre et de la période.
 

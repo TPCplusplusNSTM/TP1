@@ -59,39 +59,12 @@ namespace gestion {
 	}
 	Reservation Hotel::createReservation() {
 		gestion::Reservation ri;
-		double prix_nuit = 0.0;
-		double remise = 0.0;
-		int id = 0;
-		
-
+		int id = -1;
 		//On suppose que l'on rajoute les réservations dans l'hôtel h1
 		ri.setIdhot(getIdHotel());
-		int index = -1;
-			while (index == -1) { // cette boucle while sert en cas de chambre indisponible
-			// On commence par entrer les dates dans la reservation
-			ri.enterDates();
-
-			//On demande ensuite le prix d'une nuit et la remise sur le séjour
-			std::cout << "Entrer le prix d'une nuit: ";
-			std::cin >> prix_nuit;
-			std::cout << std::endl << "Entrer la remise: ";
-			std::cin >> remise;
-			std::cout << std::endl;
-
-			//On calcule le prix du séjour
-			ri.calc(prix_nuit, remise);
-
-			//On demande le type de chambre
-			genre type = gestion::chooseTypeRoom();
-
-			//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
-			index = checkTypeDispo(type, ri.dbegin(), ri.dend()); // revoie -1 si chambre indisponible
-			}
-
-		//On ajoute l'identifiant de la chambre à la réservation
-		std::vector<gestion::Chambre> listechambres = getListChambre();
-		ri.setIdroom(listechambres[index].id());
-
+		
+		//Determination des dates et de la chambre
+		setDatesAndRoom(ri);
 		
 		//On ajoute l'identifiant du client à la réservation
 		id = testAndAddClient();
@@ -153,31 +126,10 @@ namespace gestion {
 					else { std::cout << "Erreur : l'ID selectionne existe deja ou est negatif " << std::endl; }
 				}
 				else if (b == 2) {
-					double prix_nuit = 0.0;
-					double remise = 0.0;
-					int index = -1;
-					it->enterDates();
-
-					//On demande ensuite le prix d'une nuit et la remise sur le séjour
-					std::cout << "Entrer le prix d'une nuit: ";
-					std::cin >> prix_nuit;
-					std::cout << std::endl << "Entrer la remise: ";
-					std::cin >> remise;
-					std::cout << std::endl;
-
-					//On calcule le prix du séjour
-					it->calc(prix_nuit, remise);
-
-					//On demande le type de chambre
-					genre type = gestion::chooseTypeRoom();
-
-					//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
-					index = checkTypeDispo(type, it->dbegin(), it->dend()); // revoie -1 si chambre indisponible
-
-
-					//On ajoute l'identifiant de la chambre à la réservation
-					std::vector<gestion::Chambre> listechambres = getListChambre();
-					it->setIdroom(listechambres[index].id());
+					date::Date debut(0, 0, 0);
+					date::Date fin(0, 0, 1);
+					it->setDbegin(debut); it->setDend(fin); // on evite les conflits de dates avec la réservation que l'on veut modifier
+					setDatesAndRoom(*it);				
 				}
 				else if (b==3){
 					std::cout << " entrez l'ID d'hotel souhaite " << std::endl;
@@ -199,6 +151,32 @@ namespace gestion {
 			}
 			else { std::cout << "veuillez saisir (Y/N)" << std::endl; }
 		}
+	}
+	void Hotel::setDatesAndRoom(Reservation& resa) {
+		int index = -1; double prix_nuit = 0.0; double remise = 0.0;
+		while (index == -1) {
+			resa.enterDates();
+
+			//On demande ensuite le prix d'une nuit et la remise sur le séjour
+			std::cout << "Entrer le prix d'une nuit: ";
+			std::cin >> prix_nuit;
+			std::cout << std::endl << "Entrer la remise: ";
+			std::cin >> remise;
+			std::cout << std::endl;
+
+			//On calcule le prix du séjour
+			resa.calc(prix_nuit, remise);
+
+			//On demande le type de chambre
+			genre type = gestion::chooseTypeRoom();
+
+			//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
+			index = checkTypeDispo(type, resa.dbegin(), resa.dend()); // revoie -1 si chambre indisponible
+		}
+
+		//On ajoute l'identifiant de la chambre à la réservation
+		std::vector<gestion::Chambre> listechambres = getListChambre();
+		resa.setIdroom(listechambres[index].id());
 	}
 
 	int Hotel::checkTypeDispo(genre type, date::Date dbegin, date::Date dend) const{
