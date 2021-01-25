@@ -277,7 +277,7 @@ namespace gestion {
 			indice++;
 		}
 		std::cout << "Aucun client ne porte ce nom ou le numero du client choisi est errone, veuillez recommencer" << std::endl;
-		assert(indice > numeroclient && numeroclient >= 1); // On met une condition qui ne peut être vrai à la sortie de la boucle ce qui permet d'arrêter le programme 
+		assert(indice > numeroclient && numeroclient >= 1); // On met une condition qui ne peut être vrai à la sortie de la boucle ce qui permet d'arrêter le programme si une erreur de frappe a été faite par l'utilisateur 
 	}
 
 	int Hotel::findChambre(int idchambre) const {
@@ -409,23 +409,23 @@ namespace gestion {
 	int Hotel::checkTypeDispo(genre type, date::Date dbegin, date::Date dend) const {
 		int index = 0;
 		auto it = _chambresliste.begin(); // on selectionne une chambre dans le vecteur
-		while (it != _chambresliste.end()) { // on test le type de chambre
+		while (it != _chambresliste.end()) { // on teste le type de chambre
 			if (type == it->getType()) {
 				bool testdates = false;
-				auto it1 = _reservationsliste.begin(); // si le type concorde on regarde si il y a une reservation en cour
+				auto it1 = _reservationsliste.begin(); // si le type concorde on regarde si il y a une reservation en cours
 				bool idpresentdanslareservation = false; // cette variable va servir pour le cas "ID chambre non present dans les reservations"
 				while (it1 != _reservationsliste.end()) {
 					if (it->getIdChambre() == it1->getIdChambre()) { // test l'ID de la chambre et la période de séjour (relation reservation/chambre)
 						idpresentdanslareservation = true;
-						switch (index) { // on test la possibilité de plusieurs réservations sur des périodes différents
+						switch (index) { // on teste la possibilité de plusieurs réservations sur des périodes différentes
 						case 0:
-							if ((dbegin < it1->getDbegin() && dend < it1->getDbegin()) || (dbegin > it1->getDend() && dend > it1->getDend())) { // on check les dates strictement inf ou sup au dates de reservations en cours
+							if ((dbegin < it1->getDbegin() && dend < it1->getDbegin()) || (dbegin > it1->getDend() && dend > it1->getDend())) { // on vérifie que les dates sont strictement inf ou sup aux dates de reservations en cours
 								index = std::distance(_chambresliste.begin(), it);
 								testdates = true;
 							}
 							break;
 						default:
-							if ((dbegin < it1->getDbegin() && dend < it1->getDbegin()) || (dbegin > it1->getDend() && dend > it1->getDend())) {} // on check les dates strictement inf ou sup au dates de reservations en cours
+							if ((dbegin < it1->getDbegin() && dend < it1->getDbegin()) || (dbegin > it1->getDend() && dend > it1->getDend())) {} // on vérifie que les dates sont strictement inf ou sup aux dates de reservations en cours
 							else { testdates = false; }
 						}
 					}

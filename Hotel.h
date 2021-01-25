@@ -71,7 +71,7 @@ namespace gestion {
 	};
 
 	double priceRoom(Hotel hotel, int idroom); // permet de déterminer le prix d'une chambre à partir de son identifiant
-	void calc(Hotel hotel, Reservation reservation); // permet de calculer le prix d'une réservation en connaissant l'hôtel
+	void calc(Hotel hotel, Reservation reservation); // permet de calculer le prix du séjour en connaissant l'hôtel
 	void operator<<(std::ostream& os, Hotel hotel);
 }
 #endif

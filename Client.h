@@ -15,7 +15,7 @@ namespace gestion {
 		void setIdClient(int idclient);
 		void editClient(std::string name, int idclient);
 
-		void editNbReservations(int reservations); // inutilisé dans le programme peut premettre un système de fidélité
+		void editNbReservations(int reservations); // inutilisé dans le programme mais peut permettre un système de fidélité
 		void addReservation();
 
 		std::string toStringClient() const;

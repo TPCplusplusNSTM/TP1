@@ -55,7 +55,7 @@ void testclasseReservation() {
 
 void testValidationDates() {
 	std::cout << "On va choisir les dates de réservations et afficher le nombre de nuits" << std::endl;
-	gestion::Reservation r; // l'utilisateur ne pourra pas créer de réservations vide, nous utilisons le constructeur par défaut pour plus de simplicitée.
+	gestion::Reservation r; // l'utilisateur ne pourra pas créer de réservations vides, nous utilisons le constructeur par défaut pour plus de simplicité.
 	r.enterDates();
 }
 
