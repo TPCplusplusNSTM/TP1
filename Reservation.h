@@ -15,14 +15,13 @@ namespace gestion {
         Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli);
         Reservation() = default;
 
-        int idres() const;
-        date::Date dbegin() const;
-        date::Date dend() const;
-        int idhot() const;
-        int idroom() const;
-        int idcli() const;
-
-        double total() const;
+        int getIdRes() const;
+        date::Date getDbegin() const;
+        date::Date getDend() const;
+        int getIdHotel() const;
+        int getIdChambre() const;
+        int getIdClient() const;
+        double getTotal() const;
 
         void setDbegin(date::Date dbegin);
         void setDend(date::Date dend);

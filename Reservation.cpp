@@ -8,57 +8,47 @@ namespace gestion {
 //Reservation -------------------------------------------------------------------------------------------------
     Reservation::Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli) : _idres(idres), _dbegin(dbegin), _dend(dend), _idhot(idhot), _idroom(idroom), _idcli(idcli), _total(0) {}
 
-    int Reservation::idres() const {
+    int Reservation::getIdRes() const {
         return _idres;
     }
-
-    date::Date Reservation::dbegin() const {
+    date::Date Reservation::getDbegin() const {
         return _dbegin;
     }
-
-    date::Date Reservation::dend() const {
+    date::Date Reservation::getDend() const {
         return _dend;
     }
-
-    int Reservation::idhot() const {
+    int Reservation::getIdHotel() const {
         return _idhot;
     }
-
-    int Reservation::idroom() const {
+    int Reservation::getIdChambre() const {
         return _idroom;
     }
-
-    int Reservation::idcli() const {
+    int Reservation::getIdClient() const {
         return _idcli;
     }
-
-    double Reservation::total() const {
+    double Reservation::getTotal() const {
         return _total;
     }
 
     void Reservation::setDbegin(date::Date dbegin) {
         _dbegin = dbegin;
     }
-
     void Reservation::setDend(date::Date dend) {
         _dend = dend;
     }
-
     void Reservation::setIdroom(int idroom) {
         _idroom = idroom;
     }
-
     void Reservation::setIdclient(int idcli) {
         _idcli = idcli;
     }
-
     void Reservation::setIdhot(int idhot) {
         _idhot = idhot;
     }
-
     void Reservation::setIdres(int idres) {
         _idres = idres;
     }
+
     void Reservation::calc(double price_per_night, double remise) {
         int days = 0;
         date::Date dind = _dbegin;
@@ -69,7 +59,6 @@ namespace gestion {
         _total = price_per_night * days * (1 - remise / 100);
         std::cout << "Le prix du sejour sera de " << _total << " euros" << std::endl;
     }
-
    void Reservation::setTotal(double total) {
         _total = total;
     }
@@ -143,9 +132,9 @@ namespace gestion {
         }
     }
 
-
-//free fonction -----------------------------------------------------------------------------------------------
-
+//=================================================================================================
+//free fonction
+//=================================================================================================
 
 
     genre chooseTypeRoom(){

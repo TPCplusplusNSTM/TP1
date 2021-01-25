@@ -89,6 +89,31 @@ namespace gestion {
 		_reservationsliste.erase(_reservationsliste.begin()+index);
 	}
 
+	void Hotel::cancelReservation() {
+		std::cout << "vous avez selectionne annuler reservation" << std::endl;
+		int idresa = enterIDReservation();
+		searchAndDisplayReservation(idresa); bool test = false;
+		std::cout << "voulez-vous annuler cette reservation (Y/N)" << std::endl;
+		while (test == false) {
+			char a = 'a';
+			std::cin >> a;
+			switch (a) {
+			case 'Y':
+				delReservation(idresa);
+				std::cout << "la reservation a bien ete annule" << std::endl;
+				test = true;
+				break;
+			case 'N':
+				std::cout << "annulation" << std::endl;
+				test = true;
+				break;
+			default:
+				std::cout << "veuillez saisir (Y/N)" << std::endl;
+			}
+		}
+
+	}
+
 	void Hotel::setNameHotel(std::string name) {
 		_name = name;
 	}
@@ -171,53 +196,13 @@ namespace gestion {
 			genre type = gestion::chooseTypeRoom();
 
 			//On regarde si ce type de chambre est disponible et on stocke son index si elle l'est
-			index = checkTypeDispo(type, resa.dbegin(), resa.dend()); // revoie -1 si chambre indisponible
+			index = checkTypeDispo(type, resa.getDbegin(), resa.getDend()); // revoie -1 si chambre indisponible
 		}
 
 		//On ajoute l'identifiant de la chambre à la réservation
 		std::vector<gestion::Chambre> listechambres = getListChambre();
-		resa.setIdroom(listechambres[index].id());
+		resa.setIdroom(listechambres[index].getIdChambre());
 	}
-
-	int Hotel::checkTypeDispo(genre type, date::Date dbegin, date::Date dend) const{
-		int index = 0;	
-		auto it = _chambresliste.begin(); // on selectionne une chambre dans le vecteur
-		while (it != _chambresliste.end()) { // on test le type de chambre
-			if (type == it->type()) {
-				bool testdates = false;
-				auto it1 = _reservationsliste.begin(); // si le type concorde on regarde si il y a une reservation en cour
-				bool idpresentdanslareservation = false; // cette variable va servir pour le cas "ID chambre non present dans les reservations"
-				while (it1 != _reservationsliste.end()) {				
-					if (it->id() == it1->idroom()) { // test l'ID de la chambre et la période de séjour (relation reservation/chambre)
-						idpresentdanslareservation = true;
-						switch (index) { // on test la possibilité de plusieurs réservations sur des périodes différents
-						case 0:
-							if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) { // on check les dates strictement inf ou sup au dates de reservations en cours
-								index = std::distance(_chambresliste.begin(), it);
-								testdates = true;
-							}
-							break;
-						default:
-							if ((dbegin < it1->dbegin() && dend < it1->dbegin()) || (dbegin > it1->dend() && dend > it1->dend())) {} // on check les dates strictement inf ou sup au dates de reservations en cours
-							else { testdates = false; }
-						}
-					}
-					++it1;
-				}
-				if (testdates == true) {
-					return index;
-				}
-				else if (idpresentdanslareservation == false) {
-					index = std::distance(_chambresliste.begin(), it);
-					return index;
-				}
-			}
-			++it;
-		}
-		std::cout << "Erreur: Chambre indisponible, veuillez inserer un autre type de chambre " << std::endl;
-		return index = -1;
-	}
-
 
 	void Hotel::displayChambre(int index) const {
 		auto it = _chambresliste.begin() + index;
@@ -266,30 +251,7 @@ namespace gestion {
 		}
 	}
 
-	void Hotel::cancelReservation() {
-		std::cout << "vous avez selectionne annuler reservation" << std::endl;
-		int idresa = enterIDReservation();
-		searchAndDisplayReservation(idresa); bool test = false;
-		std::cout << "voulez-vous annuler cette reservation (Y/N)" << std::endl;
-		while (test == false) {
-			char a = 'a';
-			std::cin >> a;
-			switch (a) {
-			case 'Y':
-				delReservation(idresa);
-				std::cout << "la reservation a bien ete annule" << std::endl;
-				test = true;
-				break;
-			case 'N':
-				std::cout << "annulation" << std::endl;
-				test = true;
-				break;
-			default:
-				std::cout << "veuillez saisir (Y/N)" << std::endl;
-			}
-		}
-
-	}
+	
 
 	int Hotel::chooseClient(std::string name) const {
 		auto it = _clientsliste.begin();
@@ -320,7 +282,7 @@ namespace gestion {
 
 	int Hotel::findChambre(int idchambre) const {
 		auto it = _chambresliste.begin();
-		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.id() == idchambre; });
+		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.getIdChambre() == idchambre; });
 		if (it != _chambresliste.end()) {
 			std::cout << "chambre choisi : " << *it;
 			return std::distance(_chambresliste.begin(), it);
@@ -332,7 +294,7 @@ namespace gestion {
 
 	void Hotel::searchAndDisplayChambre(int idchambre) const {
 		auto it = _chambresliste.begin();
-		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.id() == idchambre; });
+		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.getIdChambre() == idchambre; });
 		if (it != _chambresliste.end()) {
 			std::cout << "chambre choisi : " << *it;
 		}
@@ -366,7 +328,7 @@ namespace gestion {
 
 	int Hotel::findReservation(int idresa) const {
 		auto it = _reservationsliste.begin();
-		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.idres() == idresa; });
+		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.getIdRes() == idresa; });
 		if (it != _reservationsliste.end()) {
 			std::cout << "reservation choisi : " << *it;
 			return std::distance(_reservationsliste.begin(), it);
@@ -378,7 +340,7 @@ namespace gestion {
 
 	void Hotel::searchAndDisplayReservation(int idresa) const {
 		auto it = _reservationsliste.begin();
-		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.idres() == idresa; });
+		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.getIdRes() == idresa; });
 		if (it != _reservationsliste.end()) {
 			std::cout << "reservation choisi : " << *it;
 		}
@@ -391,7 +353,7 @@ namespace gestion {
 		std::vector<Reservation> results;
 		auto it = _reservationsliste.begin();
 		while (it != _reservationsliste.end()) {
-			it = find_if(it, _reservationsliste.end(), [idclient](const Reservation& obj) {return obj.idcli() == idclient; });
+			it = find_if(it, _reservationsliste.end(), [idclient](const Reservation& obj) {return obj.getIdClient() == idclient; });
 			if (it != _reservationsliste.end()) {
 				results.push_back(*it);
 				++it;
@@ -435,13 +397,52 @@ namespace gestion {
 		while (!estValide) {
 			auto it = _reservationsliste.begin();
 			while (it != _reservationsliste.end()) {
-				if (id != it->idres()) {
+				if (id != it->getIdRes()) {
 					return id;
 				}
 				else { it++; }
 			}
 			id++;
 		}
+	}
+
+	int Hotel::checkTypeDispo(genre type, date::Date dbegin, date::Date dend) const {
+		int index = 0;
+		auto it = _chambresliste.begin(); // on selectionne une chambre dans le vecteur
+		while (it != _chambresliste.end()) { // on test le type de chambre
+			if (type == it->getType()) {
+				bool testdates = false;
+				auto it1 = _reservationsliste.begin(); // si le type concorde on regarde si il y a une reservation en cour
+				bool idpresentdanslareservation = false; // cette variable va servir pour le cas "ID chambre non present dans les reservations"
+				while (it1 != _reservationsliste.end()) {
+					if (it->getIdChambre() == it1->getIdChambre()) { // test l'ID de la chambre et la période de séjour (relation reservation/chambre)
+						idpresentdanslareservation = true;
+						switch (index) { // on test la possibilité de plusieurs réservations sur des périodes différents
+						case 0:
+							if ((dbegin < it1->getDbegin() && dend < it1->getDbegin()) || (dbegin > it1->getDend() && dend > it1->getDend())) { // on check les dates strictement inf ou sup au dates de reservations en cours
+								index = std::distance(_chambresliste.begin(), it);
+								testdates = true;
+							}
+							break;
+						default:
+							if ((dbegin < it1->getDbegin() && dend < it1->getDbegin()) || (dbegin > it1->getDend() && dend > it1->getDend())) {} // on check les dates strictement inf ou sup au dates de reservations en cours
+							else { testdates = false; }
+						}
+					}
+					++it1;
+				}
+				if (testdates == true) {
+					return index;
+				}
+				else if (idpresentdanslareservation == false) {
+					index = std::distance(_chambresliste.begin(), it);
+					return index;
+				}
+			}
+			++it;
+		}
+		std::cout << "Erreur: Chambre indisponible, veuillez inserer un autre type de chambre " << std::endl;
+		return index = -1;
 	}
 
 	bool Hotel::checkDoublonClient(int idclient) const {
@@ -462,7 +463,7 @@ namespace gestion {
 
 	bool Hotel::checkDoublonChambre(int idchambre) const {
 		auto it = _chambresliste.begin();
-		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.id() == idchambre; });
+		it = find_if(it, _chambresliste.end(), [idchambre](const Chambre& obj) {return obj.getIdChambre() == idchambre; });
 		if (it != _chambresliste.end()) {
 			return false;
 		}
@@ -472,12 +473,12 @@ namespace gestion {
 	}
 
 	bool Hotel::checkDoublonChambre(Chambre chambre) const {
-		return checkDoublonChambre(chambre.id());
+		return checkDoublonChambre(chambre.getIdChambre());
 	}
 
 	bool Hotel::checkDoublonReservation(int idresa) const {
 		auto it = _reservationsliste.begin();
-		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.idres() == idresa; });
+		it = find_if(it, _reservationsliste.end(), [idresa](const Reservation& obj) {return obj.getIdRes() == idresa; });
 		if (it != _reservationsliste.end()) {
 			return false;
 		}
@@ -487,16 +488,16 @@ namespace gestion {
 	}
 
 	bool Hotel::checkDoublonReservation(Reservation resa) const {
-		return checkDoublonReservation(resa.idres());
+		return checkDoublonReservation(resa.getIdRes());
 	}
 
 	double priceRoom(Hotel hotel, int idroom) {
 		std::vector<Chambre> chambresliste = hotel.getListChambre();
 		auto it = chambresliste.begin();
-		it = find_if(it, chambresliste.end(), [idroom](const Chambre& obj) {return obj.id() == idroom; });
+		it = find_if(it, chambresliste.end(), [idroom](const Chambre& obj) {return obj.getIdChambre() == idroom; });
 		if (it != chambresliste.end()) {
 			std::cout << "chambre choisi : " << *it;
-			return it->price();
+			return it->getPrice();
 		}
 		else {
 			assert(it == chambresliste.end() && "erreur : la chambre choisi n'existe pas");
@@ -508,10 +509,10 @@ namespace gestion {
 		std::cout << "Entrer la remise faite : ";
 		std::cin >> remise;
 		std::cout << std::endl;
-		double price = priceRoom(hotel, reservation.idroom());
+		double price = priceRoom(hotel, reservation.getIdChambre());
 		int days = 0;
-		date::Date dind = reservation.dbegin();
-		while (dind != reservation.dend()) {
+		date::Date dind = reservation.getDbegin();
+		while (dind != reservation.getDend()) {
 			dind.nextDay();
 			days++;
 		};

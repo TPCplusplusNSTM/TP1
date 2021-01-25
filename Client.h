@@ -11,12 +11,15 @@ namespace gestion {
 		std::string getName() const;
 		int getNbreservations() const;
 
-		void editClient(std::string name, int idclient);
-		std::string toStringClient() const;
 		void setName(std::string name);
 		void setIdClient(int idclient);
-		void editNbReservations(int reservations);
+		void editClient(std::string name, int idclient);
+
+		void editNbReservations(int reservations); // inutilisé dans le programme peut premettre un système de fidélité
 		void addReservation();
+
+		std::string toStringClient() const;
+
 	private:
 		std::string _name;
 		int _idclient;

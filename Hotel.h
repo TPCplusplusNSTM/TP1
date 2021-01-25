@@ -19,28 +19,24 @@ namespace gestion {
 		void addClient(Client client);
 		int testAndAddClient(); // utilisé dans createReservation : vérifie si le client est dans l'hotel et retourne son id / sinon crée un nouveau client avec un id valide
 		void addReservation(Reservation reservation);
-		Reservation createReservation();
+		Reservation createReservation(); // permet de créer une réservation par un utilisateur
 
 		void delChambre(int idchambre);
 		void delClient(int idclient);
 		void delReservation(int idresa);
+		void cancelReservation(); //permet d'annuler une réservation
 
 		void setNameHotel(std::string name);
 		void setVilleHotel(std::string ville);
 		void setIdHotel(int id);
-		void setReservation();
-		void setDatesAndRoom(Reservation& resa);
+		void setReservation(); // permet de modifier une réservation par l'utilisateur
+		void setDatesAndRoom(Reservation& resa); // permet à l'utilisateur de définir les dates de so séjour et le type de chambre
 
-		int checkTypeDispo(genre type, date::Date ddebut, date::Date dfin) const; // permet de retourner l'index d'une chambre disponible, en fonction du genre et de la période.
-
-		
 		void displayChambre(int index) const; // fonctions d'affichage 
 		void displayHotel() const;
 		void listChambres() const;
 		void listClients() const;
 		void listReservations() const;
-
-		void cancelReservation(); //permet d'annuler une réservation
 
 		int chooseClient(std::string name) const; // retourne l'ID d'un client en fonction de son nom
 		int findChambre(int idchambre) const;
@@ -56,6 +52,7 @@ namespace gestion {
 		int newIdClient(); // créer un identifiant utilisable
 		int newIdReservation();
 
+		int checkTypeDispo(genre type, date::Date ddebut, date::Date dfin) const; // permet de retourner l'index d'une chambre disponible, en fonction du genre et de la période.
 		bool checkDoublonClient(int idclient) const; // permet de tester si un identifiant est déja utilisé
 		bool checkDoublonClient(Client client) const;
 		bool checkDoublonChambre(int idchambre) const;

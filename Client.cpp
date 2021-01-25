@@ -1,7 +1,9 @@
 #include "Client.h"
 #include <assert.h>
 namespace gestion {
-	Client::Client(std::string name, int idclient) : _name(name), _idclient(idclient), _nbreservations(0) {}
+	Client::Client(std::string name, int idclient) : _name(name), _idclient(idclient), _nbreservations(0) {
+		assert(idclient >= 0);
+	}
 
 	int Client::getIdClient() const {
 		return _idclient;
@@ -13,19 +15,6 @@ namespace gestion {
 		return _nbreservations;
 	}
 
-	void Client::editClient(std::string name, int idclient) {
-		setName(name);
-		setIdClient(idclient);
-	}
-	void Client::editNbReservations(int reservations) {
-		_nbreservations = reservations;
-	}
-	void Client::addReservation() {
-		_nbreservations += 1;
-	}
-	std::string Client::toStringClient() const {
-		return "Nom = " + _name + ", ID = " + std::to_string(_idclient) + ", nb_reservations = " + std::to_string(_nbreservations);
-	}
 	void Client::setName(std::string name) {
 		assert(name != "" && name != " ");
 		_name = name;
@@ -33,6 +22,25 @@ namespace gestion {
 	void Client::setIdClient(int idclient) {
 		_idclient = idclient;
 	}
+	void Client::editClient(std::string name, int idclient) {
+		setName(name);
+		setIdClient(idclient);
+	}
+
+	void Client::editNbReservations(int reservations) {
+		_nbreservations = reservations;
+	}
+	void Client::addReservation() {
+		_nbreservations += 1;
+	}
+
+	std::string Client::toStringClient() const {
+		return "Nom = " + _name + ", ID = " + std::to_string(_idclient) + ", nb_reservations = " + std::to_string(_nbreservations);
+	}
+	
+	//=============================================================================================
+	//free functions
+	//=============================================================================================
 
 	std::string enterClient() {
 		std::string name;
