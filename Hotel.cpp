@@ -491,6 +491,10 @@ namespace gestion {
 		return checkDoublonReservation(resa.getIdRes());
 	}
 
+//=================================================================================================
+// free functions
+//=================================================================================================
+
 	double priceRoom(Hotel hotel, int idroom) {
 		std::vector<Chambre> chambresliste = hotel.getListChambre();
 		auto it = chambresliste.begin();

@@ -6,7 +6,7 @@ using date::Date;
 namespace gestion {
 
 //Reservation -------------------------------------------------------------------------------------------------
-    Reservation::Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli) : _idres(idres), _dbegin(dbegin), _dend(dend), _idhot(idhot), _idroom(idroom), _idcli(idcli), _total(0) { assert(idcli >=0 && idhot <= 0 && idres >= 0 && idroom >= 0); }
+    Reservation::Reservation(int idres, date::Date dbegin, date::Date dend, int idhot, int idroom, int idcli) : _idres(idres), _dbegin(dbegin), _dend(dend), _idhot(idhot), _idroom(idroom), _idcli(idcli), _total(0) {}
 
     int Reservation::getIdRes() const {
         return _idres;
@@ -133,7 +133,7 @@ namespace gestion {
     }
 
 //=================================================================================================
-//free fonction
+//free fonctions
 //=================================================================================================
 
 
