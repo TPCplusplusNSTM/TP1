@@ -1,4 +1,4 @@
 # TP1
-Projet de système de réservation d'hôtel :
+TP consistant à créer un système de réservations dans un hôtel :
 
 Fichier application : Gestion_Reservation.cpp
