@@ -30,23 +30,23 @@ namespace gestion {
 		std::string name = gestion::enterClient();
 
 		//On demande si le client est déja dans l'hôtel
-		std::string estDansHotel = "test";
-		while (estDansHotel == "test") {
+		std::string nouveaudanshotel = "test";
+		while (nouveaudanshotel == "test") {
 			std::cout << "Le client est-il nouveau dans l'hotel ? Entrer oui/non :";
-			std::cin >> estDansHotel;
+			std::cin >> nouveaudanshotel;
 			std::cout << std::endl;
 
 			//Si il n'est pas dans l'hôtel on l'ajoute, sinon on demande de choisir quel client choisir
-			if (estDansHotel == "oui") {
+			if (nouveaudanshotel == "oui") {
 				id = newIdClient();
 				gestion::Client c(name, id);
 				addClient(c);
 			}
-			else if (estDansHotel == "non") {
+			else if (nouveaudanshotel == "non") {
 				id = chooseClient(name);
 			}
 			else {
-				estDansHotel = "test";
+				nouveaudanshotel = "test";
 				std::cout << "Erreur : veuillez entrer oui/non :" << std::endl;
 			}
 		}
@@ -128,15 +128,15 @@ namespace gestion {
 		int idresa = enterIDReservation();
 		assert(checkDoublonReservation(idresa) == false && "Erreur : la reservation selectionne n'existe pas");
 		auto it = _reservationsliste.begin() + findReservation(idresa);
-		searchAndDisplayReservation(idresa); bool test = false;
+		bool test = false;
 		std::cout << "voulez-vous modifier cette reservation (Y/N)" << std::endl;
 		while (test == false) {
 			char a = 'a';
 			std::cin >> a;
 			if (a == 'Y') {
-				std::cout << "entrez le numéro correspondant au type de modifications : " << std::endl;
+				std::cout << "entrez le numero correspondant au type de modifications : " << std::endl;
 				std::cout << " (1) : ID reservation " << std::endl;
-				std::cout << " (2) : Dates de réservations " << std::endl;
+				std::cout << " (2) : Dates de reservations " << std::endl;
 				std::cout << " (3) : ID hotel " << std::endl;
 				std::cout << " (4) : ID client " << std::endl;
 				int b = 0;
@@ -167,7 +167,7 @@ namespace gestion {
 					id = testAndAddClient();
 					it->setIdclient(id);
 				}
-				else { std::cout << " Erreur : aucune option sélectionne " << std::endl; }
+				else { std::cout << " Erreur : aucune option selectionne " << std::endl; }
 				test = true;
 			} 
 			else if (a == 'N') {
@@ -374,33 +374,41 @@ namespace gestion {
 	}
 
 	int Hotel::newIdClient() {
-		int id = 0;
+		int id = 1; int r = 0;
 		bool estValide = false;
-		while (!estValide) {
+		while (estValide==false) {
+			estValide = true;
 			auto it = _clientsliste.begin();
 			while (it != _clientsliste.end()) {
-				if (id != it->getIdClient()) {
-					return id;
+				if (id == it->getIdClient()) {
+					estValide = false;
+					it++;
 				}
 				else { it++; }
 			}
+			r = id;
 			id++;
 		}
+		return r;
 	}
 
 	int Hotel::newIdReservation() {
-		int id = 0;
+		int id = 1; int r = 0;
 		bool estValide = false;
-		while (!estValide) {
+		while (estValide==false) {
+			estValide = true;
 			auto it = _reservationsliste.begin();
 			while (it != _reservationsliste.end()) {
-				if (id != it->getIdRes()) {
-					return id;
+				if (id == it->getIdRes()) {
+					estValide=false;
+					it++;
 				}
 				else { it++; }
 			}
+			r = id;
 			id++;
 		}
+		return r;
 	}
 
 	int Hotel::checkTypeDispo(genre type, date::Date dbegin, date::Date dend) const {

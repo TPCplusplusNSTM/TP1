@@ -54,7 +54,7 @@ void testclasseReservation() {
 }
 
 void testValidationDates() {
-	std::cout << "On va choisir les dates de réservations et afficher le nombre de nuits" << std::endl;
+	std::cout << "On va choisir les dates de reservations et afficher le nombre de nuits" << std::endl;
 	gestion::Reservation r; // l'utilisateur ne pourra pas créer de réservations vides. Nous utilisons le constructeur par défaut pour pour simplifier les fonctions.
 	r.enterDates();
 }
@@ -75,8 +75,8 @@ void testChoixClient(gestion::Hotel& h1) {
 }
 
 void testValidationReservation(gestion::Hotel& h1) {
+	h1.listReservations();
 	for (int i = 0; 5; i++) {
-		h1.listReservations();
 		h1.addReservation(h1.createReservation());
 		h1.listReservations();
 	}
@@ -154,20 +154,20 @@ int main() {
 	h1.addClient(cl1); h1.addClient(cl2); h1.addClient(cl3); h1.addClient(cl4); h1.addClient(cl5); h1.addClient(cl6); h1.addClient(cl7); h1.addClient(cl8); h1.addClient(cl9); h1.addClient(cl10);
 
 	//Création objets Date
-	date::Date d1(2021, 5, 1);
-	date::Date d2(2021, 10, 1);
+	date::Date d1(2021, 1, 1);
+	date::Date d2(2021, 2, 1);
 
-	date::Date d3(2021, 4, 1);
-	date::Date d4(2022, 1, 16);
+	date::Date d3(2021, 3, 1);
+	date::Date d4(2021, 4, 1);
 
-	date::Date d5(2021, 6, 22);
-	date::Date d6(2022, 3, 6);
+	date::Date d5(2021, 5, 1);
+	date::Date d6(2021, 6, 1);
 
-	date::Date d7(2021, 2, 10);
-	date::Date d8(2023, 12, 25);
+	date::Date d7(2021, 7, 1);
+	date::Date d8(2021, 8, 1);
 
-	date::Date d9(2021, 2, 10);
-	date::Date d10(2021, 2, 12);
+	date::Date d9(2021, 9, 1);
+	date::Date d10(2021, 10, 1);
 
 	//Création objets Reservation
 	gestion::Reservation r1(1, d1, d2, 1, 1, 1);
